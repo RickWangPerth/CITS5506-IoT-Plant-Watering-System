@@ -11,18 +11,25 @@ $(window).on('load', () => {
     const emoji = document.getElementById('emoji')
 
     //Temperature
+    const highTemp = 35
+    const lowTemp = 5
     const tempValue = document.getElementById('temp-value').innerHTML
 
-    const tooHot = tempValue>35
-    const goodTemp = tempValue<35 & tempValue>5
-    const tooCold = tempValue<5
+    const tooHot = tempValue>highTemp
+    const goodTemp = tempValue<highTemp & tempValue>lowTemp
+    const tooCold = tempValue<lowTemp
     //Moisture
+    const highMois = 60
+    const lowMois = 20
     const moisValue =  document.getElementById('mois-value').innerHTML
 
-    const tooMois = moisValue>60
-    const goodMois = moisValue<60 & moisValue>20
-    const lessMois = moisValue<20
+    const tooMois = moisValue>highMois
+    const goodMois = moisValue<highMois & moisValue>lowMois
+    const lessMois = moisValue<lowMois
+
     //Light
+    const highLight = 60
+    const lowLight = 20
     const lightValue = document.getElementById('light-value').innerHTML
 
     //Watering

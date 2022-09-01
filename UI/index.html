@@ -11,6 +11,7 @@
 
     </head>
     <body>
+        <!-- Nav Bar -->
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
@@ -32,12 +33,18 @@
                 </div>
             </div>
         </nav>
+
+        <!-- Alarm Text -->
         <div class="alarm" id="alarm"></div>
+
+        <!--Darshboard-->
+        <!-- Soil moisture -->
         <div class="container pt-5">
             <div class="row">
-                <div class="col-md-3 col-sm-6 sys">
+                <div class="col-md-2 col-sm-4 sys">
                     <div id="mois"> Soil moisture </div>
-                    <div class="progress blue pt-3">
+                    <div class="pt-2"></div>
+                    <div class="progress moisbar pt-3">
                         <span class="progress-left">
                             <span class="progress-bar"></span>
                         </span>
@@ -45,13 +52,15 @@
                             <span class="progress-bar"></span>
                         </span>
                         <div class="progress-value" >
-                            <span id="mois-value">90</span> <span>%</span>
+                            <span id="mois-value">30</span> <span>%</span>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6 sys">
+                <!-- Temperature -->
+                <div class="col-md-2 col-sm-4 sys">
                     <div id="temp"> Temperature </div>
-                    <div class="progress yellow pt-3">
+                    <div class="pt-2"></div>
+                    <div class="progress tempbar pt-3">
                         <span class="progress-left">
                             <span class="progress-bar"></span>
                         </span>
@@ -63,22 +72,44 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6 sys">
+                <!-- Light -->
+                <div class="col-md-2 col-sm-4 sys">
+                    <div id="light"> Light </div>
+                    <div class="pt-2"></div>
+                    <div class="progress lightbar pt-3">
+                        <span class="progress-left">
+                            <span class="progress-bar"></span>
+                        </span>
+                        <span class="progress-right">
+                            <span class="progress-bar"></span>
+                        </span>
+                        <div class="progress-value">
+                            <sapn id="light-value">15</sapn> <span></span>
+                        </div>
+                    </div>
+                </div>
+                <!--Emoji-->
+                <div class="col-md-6 col-sm-6 sys">
                     <img src="./images/emoji/cold.gif" width="200px" alt="emoji" id="emoji"/>
                 </div>
+            </div>
         </div>
-
+        <!--Control board-->
         <div class="container pt-5">
             <div class="row">
+                <!--Watering btn-->
                 <div class="col-md-3 col-sm-6 sys pt-5">
                     <button type="button" class="btn btn-primary" id="watering-btn">Watering your plant</button>
                 </div>
+                <!--Photo btn-->
                 <div class="col-md-3 col-sm-6 sys pt-5">
                     <button type="button" class="btn btn-success" id="photo-btn">Take a photo</button>
                 </div>
-                <div class="col-md-3 col-sm-6 sys pt-5">
+                <!--photo display-->
+                <div class="col-md-6 col-sm-6 sys pt-5">
                     <img src="./images/plant.jpeg" width="200px" alt="plant-photo" id="photo"/>
                 </div>
+            </div>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>

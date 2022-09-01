@@ -5,7 +5,10 @@ body{
 .navbar{
     background-color: skyblue;
 }
-
+.sys{
+    text-align: center;
+    align-self:center
+}
 .alarm{
     color: black;
     background-color: palevioletred;
@@ -50,17 +53,18 @@ body{
     position: absolute;
     width: 100%;
     height: 100%;
-    background: none;
+    background:none;
     top: 0;
 }
 .progress .progress-left .progress-bar{
     left: 100%;
-    border-top-right-radius: 80px;
-    border-bottom-right-radius: 80px;
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
     border-left: 0;
     -webkit-transform-origin: center left;
     transform-origin: center left;
 }
+
 .progress .progress-right{
     right: 0;
 }
@@ -68,11 +72,12 @@ body{
     left: -100%;
     -webkit-transform-origin: center right;
     transform-origin: center right;
-    border-top-left-radius: 80px;
-    border-bottom-left-radius: 80px;
+    border-top-left-radius: 100px;
+    border-bottom-left-radius: 100px;
     border-right: 0;
-    animation: loading-1 1.8s linear forwards;
+    /* animation: loading-mois 1.5s linear forwards;  */
 }
+
 .progress .progress-value{
     font-size: 24px;
     color:black;
@@ -82,7 +87,7 @@ body{
     position: absolute;
 }
 
-@keyframes loading-1{
+/* @keyframes loading-moisRight{
     0%{
         -webkit-transform: rotate(0deg);
         transform: rotate(0deg);
@@ -92,17 +97,28 @@ body{
         transform: rotate(180deg);
     }
 }
-@keyframes loading-2{
+@keyframes loading-moisLeft{
     0%{
         -webkit-transform: rotate(0deg);
         transform: rotate(0deg);
     }
     100%{
-        -webkit-transform: rotate(144deg);
-        transform: rotate(144deg);
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
     }
 }
-@keyframes loading-3{
+
+@keyframes loading-tempRight{
+    0%{
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100%{
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+}
+@keyframes loading-tempLeft{
     0%{
         -webkit-transform: rotate(0deg);
         transform: rotate(0deg);
@@ -111,47 +127,60 @@ body{
         -webkit-transform: rotate(90deg);
         transform: rotate(90deg);
     }
-}
-@keyframes loading-4{
+}*/
+
+
+/* @keyframes loading-lightRight{
     0%{
         -webkit-transform: rotate(0deg);
         transform: rotate(0deg);
     }
     100%{
-        -webkit-transform: rotate(36deg);
-        transform: rotate(36deg);
-    }
-}
-@keyframes loading-5{
-    0%{
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg);
-    }
-    100%{
-        -webkit-transform: rotate(126deg);
-        transform: rotate(126deg);
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
     }
 }
 
-.progress.blue .progress-bar{
+@keyframes loading-lightLeft{
+    0%{
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100%{
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+}  */
+
+
+
+.progress.moisbar .progress-bar{
     border-color: #26abfd;
 }
-.progress.blue .progress-left .progress-bar{
-    animation: loading-5 1.5s linear forwards 1.8s;
+.progress.moisbar .progress-right .progress-bar{
+    animation: loading-moisRight 1.5s linear forwards;
 }
-.progress.yellow .progress-bar{
-    border-color: #fdc426;
-}
-.progress.yellow .progress-left .progress-bar{
-    animation: loading-3 1s linear forwards 1.8s;
-}
-.progress.pink .progress-bar{
-    border-color: #f83754;
-}
-.progress.pink .progress-left .progress-bar{
-    animation: loading-4 0.4s linear forwards 1.8s;
+.progress.moisbar .progress-left .progress-bar{
+    animation: loading-moisLeft 1.5s linear forwards 1.5s;
 }
 
-.sys{
-    text-align: center;
+.progress.tempbar .progress-bar{
+    border-color: #fdc426;
+}
+.progress.tempbar .progress-right .progress-bar{
+    animation: loading-tempRight 1.5s linear forwards;
+}
+.progress.tempbar .progress-left .progress-bar{
+    animation: loading-tempLeft 1.5s linear forwards 1.5s;
+}
+
+
+.progress.lightbar .progress-bar{
+    border-color: #f83754;
+}
+.progress.lightbar .progress-right .progress-bar{
+    animation: loading-lightRight 1.5s linear forwards;
+}
+.progress.lightbar .progress-left .progress-bar{
+    animation: loading-lightLeft 1.5s linear forwards 1.5s;
 }

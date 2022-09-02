@@ -4,24 +4,28 @@ $(window).on('load', () => {
     const width = 500 - 2 * margin;
     const height = 150 - 2 * margin;
     var barPadding = 3;
-    var dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
+    var moisdataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
         11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
-    var svg = d3.select("body")
+    var tempdataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
+        11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
+    var lightdataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
+        11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
+    var moissvg = d3.select("#moisdata")
         .append("svg")
         .attr("width", width)
         .attr("height", height);
 
-    svg.selectAll("rect")
-        .data(dataset)
+    moissvg.selectAll("rect")
+        .data(moisdataset)
         .enter()
         .append("rect")
         .attr("x", function(d, i) {
-            return i * (width / dataset.length);
+            return i * (width / moisdataset.length);
         })
         .attr("y", function(d){
             return height - (d * 4);
         })
-        .attr("width", width / dataset.length - barPadding)
+        .attr("width", width / moisdataset.length - barPadding)
         .attr("height", function(d) {
             return d*10;
         })
@@ -29,15 +33,15 @@ $(window).on('load', () => {
             return "rgb(0, 0, " + (d * 10) + ")";
         });
 
-    svg.selectAll("text")
-        .data(dataset)
+    moissvg.selectAll("text")
+        .data(moisdataset)
         .enter()
         .append("text")
         .text(function(d) {
             return d;
         })
         .attr("x", function(d, i) {
-            return i * (width / dataset.length) + (width / dataset.length - barPadding) / 2;
+            return i * (width / moisdataset.length) + (width / moisdataset.length - barPadding) / 2;
         })
         .attr("y", function(d) {
             return height - (d * 4) + 15;

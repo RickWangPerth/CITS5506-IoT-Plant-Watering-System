@@ -184,3 +184,8 @@ body{
 .progress.lightbar .progress-left .progress-bar{
     animation: loading-lightLeft 1.5s linear forwards 1.5s;
 }
+
+footer{
+    text-align: center;
+    background-color:  darkseagreen;;
+}

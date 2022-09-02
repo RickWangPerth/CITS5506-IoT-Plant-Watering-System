@@ -10,3 +10,7 @@ def index():
 @app.route('/historical/')
 def historical():
     return render_template("historical.html", title="Historical Data")
+
+@app.route('/advance')
+def advance():
+    return render_template("advance.html", title="Advance Setting")

@@ -1,0 +1,62 @@
+{% extends "base.html" %} 
+
+{% block content %}
+<div class="container pt-5">
+    <div class="row">
+        <div class="col-md-3 col-sm-6">
+            <h5> Soild moisture range(%) </h5>
+            <form class="form-floating">
+                <input type="number" class="form-control" id="moisMax" placeholder="70" value="70" step="5">
+                <label for="moisMax">Max</label>
+            </form>
+            <div class="pt-2"></div>
+            <form class="form-floating">
+                <input type="number" class="form-control" id="moisMin" placeholder="30" value="30" step="5">
+                <label for="moisMin">Min</label>
+            </form>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <h5> Temperature range (°C) </h5>
+            <form class="form-floating">
+                <input type="number" class="form-control" id="tempMax" placeholder="30" value="30" step="5">
+                <label for="tempMax">Max</label>
+            </form>
+            <div class="pt-2"></div>
+            <form class="form-floating">
+                <input type="number" class="form-control" id="tempMin" placeholder="5" value="5" step="5">
+                <label for="tempMin">Min</label>
+            </form>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <h5> Ligth range </h5>
+            <form class="form-floating">
+                <input type="number" class="form-control" id="lightMax" placeholder="50" value="50" step="1">
+                <label for="lightMax">Max</label>
+            </form>
+            <div class="pt-2"></div>
+            <form class="form-floating">
+                <input type="number" class="form-control" id="lightMin" placeholder="5" value="5" step="1">
+                <label for="lightMin">Min</label>
+            </form>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <h5> Once watering time (mins)</h5>
+            <form class="form-floating">
+                <input type="number" class="form-control" id="wateringTime" placeholder="2" value="2" step="1">
+                <label for="lightMax"></label>
+            </form>
+        </div>
+        <div class="container pt-5">
+            <div class="row">
+                <div class="col-md-6 sys">
+                    <button type="button" class="btn btn-success" id="photo-btn">Update Seeting</button>
+                </div>
+                <div class="col-md-6 sys">
+                    <button type="button" class="btn btn-success" id="photo-btn">Reset to defaults</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

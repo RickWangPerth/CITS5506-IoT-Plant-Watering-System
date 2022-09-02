@@ -7,6 +7,6 @@ from app import app
 def index():
     return render_template("index.html", title="Dashboard")
 
-@app.route('/historical')
-def historcial():
+@app.route('/historical/')
+def historical():
     return render_template("historical.html", title="Historical Data")

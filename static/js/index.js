@@ -5,10 +5,10 @@ $(window).on('load', () => {
     const alarm = document.getElementById("alarm")
 
     //Emoji
-    const cold = "./images/emoji/cold.gif"
-    const hot = "./images/emoji/hot.gif"
-    const happy = "./images/emoji/happy.gif"
-    const sad = "./images/emoji/sad.gif"
+    const cold = "../static/images/emoji/cold.gif"
+    const hot = "../static/images/emoji/hot.gif"
+    const happy = "../static/images/emoji/happy.gif"
+    const sad = "../static/images/emoji/sad.gif"
     const emoji = document.getElementById('emoji')
 
      //Moisture

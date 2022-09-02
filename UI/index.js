@@ -121,5 +121,24 @@ $(window).on('load', () => {
         var keyframe = "@keyframes loading-"+type[4]+"{0%{-webkit-transform: rotate(0deg);transform: rotate(0deg);}100%{-webkit-transform: rotate("+ degreeRight +"deg);transform: rotate("+ degreeRight + "deg);}"
         styleSheet.insertRule(keyframe,styleSheet.cssRules.length)
     }
-
+    //Watering alert
+    const alertPlaceholder = document.getElementById('wateringAlertPlaceholder')
+    const alert = (message, type) => {
+        const info = document.createElement('div')
+        info.innerHTML = [
+          `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+          `   <div>${message}</div>`,
+          '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+          '</div>'
+        ].join('')
+      
+        alertPlaceholder.append(info)
+      }
+      
+      const alertTrigger = wateringButton
+      if (alertTrigger) {
+        alertTrigger.addEventListener('click', () => {
+          alert('Great, watering will finish in 2 minutes', 'success')
+        })
+      }
 })

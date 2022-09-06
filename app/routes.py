@@ -18,6 +18,7 @@ def advance():
 
 @app.route('/Setting', methods=["POST"])
 def store_Setting():
+    id = request.json.get("id")
     moisMin = request.json.get("moisMin")
     moisMax = request.json.get("moisMax")
     tempMin = request.json.get("tempMin")
@@ -28,7 +29,7 @@ def store_Setting():
     print(request.json, 'sss')
 
     setting = Setting(
-        id = 1,
+        id = id,
         moisMin = moisMin,
         moisMax = moisMax,
         tempMin  = tempMin,

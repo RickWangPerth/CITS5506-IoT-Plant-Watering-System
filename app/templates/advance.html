@@ -1,8 +1,19 @@
 {% extends "base.html" %} 
 {% block script %}
+<script>
+    var moisMin = {{ data.moisMin }}
+    var moisMax = {{ data.moisMax }}
+    var tempMax = {{ data.tempMax }}
+    var tempMin = {{ data.tempMin }}
+    var lightMin = {{ data.lightMin }}
+    var lightMax = {{ data.lightMax }}
+    var wateringTime = {{ data.wateringTime }}
+    console.log(moisMin)
+</script>
 <script src="{{ url_for('static', filename='js/advance.js') }}"></script>
 {% endblock %} 
 {% block content %}
+
 <!-- Alert-->
 <div id="dataAlertPlaceholder"></div>
 <div class="container pt-5">
@@ -10,44 +21,44 @@
         <div class="col-md-3 col-sm-6">
             <h5> Soild moisture range(%) </h5>
             <form class="form-floating">
-                <input type="number" class="form-control" id="moisMax" placeholder="70" value="70" step="5" min="30" max="80">
+                <input type="number" class="form-control" id="moisMax" step="5" min="30" max="80">
                 <label for="moisMax">Max</label>
             </form>
             <div class="pt-2"></div>
             <form class="form-floating">
-                <input type="number" class="form-control" id="moisMin" placeholder="30" value="30" step="5" min="10" max="50">
+                <input type="number" class="form-control" id="moisMin" step="5" min="10" max="50">
                 <label for="moisMin">Min</label>
             </form>
         </div>
         <div class="col-md-3 col-sm-6">
             <h5> Temperature range (°C) </h5>
             <form class="form-floating">
-                <input type="number" class="form-control" id="tempMax" placeholder="30" value="30" step="5" min="10" max="45">
+                <input type="number" class="form-control" id="tempMax" step="5" min="10" max="45">
                 <label for="tempMax">Max</label>
             </form>
             <div class="pt-2"></div>
             <form class="form-floating">
-                <input type="number" class="form-control" id="tempMin" placeholder="5" value="5" step="5" min="-10" max="20">
+                <input type="number" class="form-control" id="tempMin" step="5" min="-10" max="20">
                 <label for="tempMin">Min</label>
             </form>
         </div>
         <div class="col-md-3 col-sm-6">
-            <h5> Ligth range </h5>
+            <h5> Light range </h5>
             <form class="form-floating">
-                <input type="number" class="form-control" id="lightMax" placeholder="5" value="5" step="1" min="5" max="10">
+                <input type="number" class="form-control" id="lightMax" step="1" min="5" max="10">
                 <label for="lightMax">Max</label>
             </form>
             <div class="pt-2"></div>
             <form class="form-floating">
-                <input type="number" class="form-control" id="lightMin" placeholder="2" value="2" step="1" min="1" max="6">
+                <input type="number" class="form-control" id="lightMin" step="1" min="1" max="6">
                 <label for="lightMin">Min</label>
             </form>
         </div>
         <div class="col-md-3 col-sm-6">
             <h5> Once watering time (mins)</h5>
             <form class="form-floating">
-                <input type="number" class="form-control" id="wateringTime" placeholder="2" value="2" step="1">
-                <label for="lightMax">Watering Time</label>
+                <input type="number" class="form-control" id="wateringTime" step="1">
+                <label for="wateringTime">Watering Time</label>
             </form>
         </div>
         <div class="container pt-5">

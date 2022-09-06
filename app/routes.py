@@ -14,7 +14,10 @@ def historical():
 
 @app.route('/advance', methods=['GET', 'POST'])
 def advance():
-    return render_template("advance.html", title="Advance Setting")
+    setting = Setting.query.first()
+    return render_template('advance.html', data={'moisMin': setting.moisMin, \
+    'moisMax': setting.moisMax, 'tempMin': setting.tempMin, 'tempMax': setting.tempMax, \
+    'lightMax': setting.lightMax, 'lightMin': setting.lightMin, 'wateringTime': setting.wateringTime}, Title="Advanced Settings")
 
 @app.route('/Setting', methods=["POST"])
 def store_Setting():
@@ -28,17 +31,27 @@ def store_Setting():
     wateringTime = request.json.get("wateringTime")
     print(request.json, 'sss')
 
-    setting = Setting(
-        id = id,
-        moisMin = moisMin,
-        moisMax = moisMax,
-        tempMin  = tempMin,
-        tempMax = tempMax,
-        lightMax = lightMax,
-        lightMin = lightMin,
-        wateringTime = wateringTime
-    )
-    db.session.add(setting)
+    setting = Setting.query.first()
+    setting.moisMin = moisMin
+    setting.moisMax = moisMax
+    setting.tempMin = tempMin
+    setting.tempmax = tempMax
+    setting.lightMin = lightMin
+    setting.lightMax = lightMax
+    setting.wateringTime = wateringTime
     db.session.commit()
+
+    # setting = Setting(
+    #     id = id,
+    #     moisMin = moisMin,
+    #     moisMax = moisMax,
+    #     tempMin  = tempMin,
+    #     tempMax = tempMax,
+    #     lightMax = lightMax,
+    #     lightMin = lightMin,
+    #     wateringTime = wateringTime
+    # )
+    # db.session.add(setting)
+    # db.session.commit()
     flash('Item created.')
     return setting.to_dict()

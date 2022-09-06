@@ -19,6 +19,16 @@ $(window).on('load', () => {
     const updateBtn = document.getElementById("update-btn")
     const resetBtn = document.getElementById("reset-btn")
 
+    // set values for settings
+    document.getElementById("moisMin").value = moisMin;
+    document.getElementById("moisMax").value = moisMax;
+    document.getElementById("tempMin").value = tempMin;
+    document.getElementById("tempMax").value = tempMax;
+    document.getElementById("lightMin").value = lightMin;
+    document.getElementById("lightMax").value = lightMax;
+    document.getElementById("wateringTime").value = wateringTime;
+    console.log("success");
+
     // raise alert for inappropriate data
     function dataGapCheck(dataType,gap){
       const alertPlaceholder = document.getElementById('dataAlertPlaceholder')
@@ -86,13 +96,13 @@ $(window).on('load', () => {
     }
     // Clicked update btn
     updateBtn.addEventListener('click', () => {
-      const moisMax = document.getElementById("moisMax").value
-      const moisMin = document.getElementById("moisMin").value
-      const tempMax = document.getElementById("tempMax").value
-      const tempMin = document.getElementById("tempMin").value
-      const lightMax = document.getElementById("lightMax").value
-      const lightMin = document.getElementById("lightMin").value
-      const wateringTime = document.getElementById("wateringTime").value
+      var moisMax = document.getElementById("moisMax").value
+      var moisMin = document.getElementById("moisMin").value
+      var tempMax = document.getElementById("tempMax").value
+      var tempMin = document.getElementById("tempMin").value
+      var lightMax = document.getElementById("lightMax").value
+      var lightMin = document.getElementById("lightMin").value
+      var wateringTime = document.getElementById("wateringTime").value
 
       dataRangeCheck("moisMax",moisMax)
       dataRangeCheck("moisMin",moisMin)
@@ -110,6 +120,18 @@ $(window).on('load', () => {
       }else if(wateringTime > 6 | wateringTime < 1){
         dataGapCheck('Watering Time')
       }
+      
+      $.ajax({
+        url: "/Setting",
+        type: "POST",
+        data: JSON.stringify({ id:1, moisMin: moisMin, moisMax: moisMax, tempMin:tempMin, 
+          tempMax:tempMax, lightMin:lightMin, lightMax:lightMax, wateringTime:wateringTime}),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+          console.log(data);
+        },
+      });
     })
 
     // Clicked update btn

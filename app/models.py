@@ -9,7 +9,29 @@ class Setting(db.Model):
     tempMax = db.Column(db.Integer,index=True)
     lightMax = db.Column(db.Integer,index=True)
     lightMin = db.Column(db.Integer,index=True)
-    waterTime = db.Column(db.Integer,index=True)
-    created_at = db.Column(db.DateTime(timezone=True),
-                           server_default=func.now())
+    wateringTime = db.Column(db.Integer,index=True)
 
+    def __repr__(self):
+        return '[id;{},moisMin:{}, moisMax:{}, tempMin:{}, tempMax:{}, lightMax:{}, lightMin:{}, wateringTime:{}]'.format(
+            self.id,
+            self.moisMin,
+            self.moisMax,
+            self.tempMin,
+            self.lightMax,
+            self.lightMin,
+            self.wateringTime)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'moisMin': self.moisMin,
+            'moisMax': self.moisMax,
+            'tempMin': self.tempMin,
+            'tempMax': self.tempMax,
+            'lightMax': self.lightMax,
+            'lightMin': self.lightMin,
+            'wateringTime':self.wateringTime
+        }
+class User(db.Model):  # 表名将会是 user（自动生成，小写处理）
+    id = db.Column(db.Integer, primary_key=True)  # 主键
+    name = db.Column(db.String(20))  # 名字

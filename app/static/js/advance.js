@@ -126,7 +126,7 @@ $(window).on('load', () => {
       $.ajax({
         url: "/Setting",
         type: "POST",
-        data: JSON.stringify({ id:1, moisMin: moisMinDefault, moisMax: moisMaxDefault, tempMin:tempMinDefault, tempMax:tempMaxDefault, lightMin:lightMinDefault,lightMax:lightMaxDefault, wateringTime:wateringTimeDefault }),
+        data: JSON.stringify({ id:1, moisMin: moisMinDefault, moisMax: moisMaxDefault, tempMin:tempMinDefault, tempMax:tempMaxDefault, lightMin:lightMinDefault, lightMax:lightMaxDefault, wateringTime:wateringTimeDefault}),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {

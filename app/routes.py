@@ -25,6 +25,7 @@ def store_Setting():
     lightMax = request.json.get("lightMax")
     lightMin = request.json.get("lightMin")
     wateringTime = request.json.get("wateringTime")
+    print(request.json, 'sss')
 
     setting = Setting(
         id = 1,

@@ -53,5 +53,6 @@ def store_Setting():
     # )
     # db.session.add(setting)
     # db.session.commit()
+
     flash('Item created.')
     return setting.to_dict()

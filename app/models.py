@@ -39,4 +39,11 @@ class History(db.Model):
     temperature = db.Column(db.REAL,index=True)
     light = db.Column(db.REAL,index=True)
     waterLevel = db.Column(db.Boolean, index=True)
+
+    def __init__(self, timestamp, moisture, temperature, light, waterLevel):
+        self.timestamp = timestamp
+        self.moisture = moisture
+        self.temperature = temperature
+        self.light = light
+        self.waterLevel = waterLevel
     

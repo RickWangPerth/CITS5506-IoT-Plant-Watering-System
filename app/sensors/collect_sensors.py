@@ -48,7 +48,7 @@ class CollectSensors:
         return self.moisture, self.temperature, self.water_present
     
     def update_database(self):
-        self.update()
+        print(self.get_current())
         history = History(datetime.now(), self.moisture, self.temperature, 0, self.water_present)
         self.db.session.add(history)
         self.db.session.commit()

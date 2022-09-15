@@ -18,13 +18,9 @@ import atexit
 
 sensors = CollectSensors(db)
 
-def update_sensors():
-    print(sensors.get_current())
-    time.sleep(1)
-
 
 scheduler = BackgroundScheduler()
-scheduler.add_job(func=update_sensors, trigger="interval", seconds=3)
+scheduler.add_job(func=sensors.update_database, trigger="interval", seconds=3)
 scheduler.start()
 
 # Shut down the scheduler when exiting the app

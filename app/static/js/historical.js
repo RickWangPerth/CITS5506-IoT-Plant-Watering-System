@@ -4,12 +4,6 @@ $(window).on('load', () => {
     const width = 500 - 2 * margin;
     const height = 150 - 2 * margin;
     var barPadding = 3;
-    var moisData = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
-        11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
-    var tempData = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
-        11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
-    var lightData = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
-        11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
 
     if (moisData.length > 0) { // If we've received sensor data
         var moissvg = d3.select("#moisData")

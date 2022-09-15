@@ -22,7 +22,11 @@ class CollectSensors:
         self.WATER_LEVEL_PIN = 1
         self.io = ExpanderPi.IO()
 
-        self.camera = Camera()
+        # Camera
+        self.PHOTOS_FOLDER = '/home/cits5506/plant_photos'
+        self.KEEP_PHOTOS = 10
+
+        self.camera = Camera(self.PHOTOS_FOLDER, self.KEEP_PHOTOS)
         self.moisture_sensor = MoistureSensor(self.adc, self.REF_VOLTAGE, self.MOISTURE_PIN)
         self.temperature_sensor = TemperatureSensor(self.adc, self.TEMPERATURE_PIN)
         self.water_level_sensor = WaterLevelSensor(self.io, self.WATER_LEVEL_PIN)
@@ -34,6 +38,7 @@ class CollectSensors:
         self.moisture = self.moisture_sensor.get_moisture()
         self.temperature = self.temperature_sensor.get_temp()
         self.water_present = self.water_level_sensor.water_detected()
+        self.camera.save_picture()
     
     def get_current(self):
         self.update()

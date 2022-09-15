@@ -4,14 +4,18 @@ import datetime
 import os
 
 class Camera:
-    def __init__(self):
+    def __init__(self, photos_folder, keep_num_photos):
         self.camera = picamera.PiCamera()
-        self.photos_folder = '/home/cits5506/plant_photos'
+        self.photos_folder = photos_folder
+        self.keep_num_photos = keep_num_photos
         if not os.path.exists(self.photos_folder):
             os.makedirs(self.photos_folder)
     
     def save_picture(self):
-        # TODO delete older pictures in the folder
+        for filename in sorted(os.listdir(self.photos_folder))[:-self.keep_num_photos]:  # Keep the n most recent
+            filename_relPath = os.path.join(self.photos_folder,filename)
+            os.remove(filename_relPath)
+
         self.camera.capture(f'{self.photos_folder}/{datetime.datetime.now()}.jpg')
     
     def camera_5s_preview(self):

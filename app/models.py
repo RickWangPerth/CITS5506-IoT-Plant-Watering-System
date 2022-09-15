@@ -1,15 +1,16 @@
+from email.policy import default
 from app import db
 from sqlalchemy.sql import func
 
 class Setting(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    moisMin = db.Column(db.Integer,index=True)
-    moisMax = db.Column(db.Integer,index=True)
-    tempMin = db.Column(db.Integer,index=True)
-    tempMax = db.Column(db.Integer,index=True)
-    lightMax = db.Column(db.Integer,index=True)
-    lightMin = db.Column(db.Integer,index=True)
-    wateringTime = db.Column(db.Integer,index=True)
+    id = db.Column(db.Integer, primary_key=True, default=1)
+    moisMin = db.Column(db.Integer,index=True, default=20)
+    moisMax = db.Column(db.Integer,index=True, default=70)
+    tempMin = db.Column(db.Integer,index=True, default=5)
+    tempMax = db.Column(db.Integer,index=True, default=35)
+    lightMax = db.Column(db.Integer,index=True, default=2)
+    lightMin = db.Column(db.Integer,index=True, default=5)
+    wateringTime = db.Column(db.Integer,index=True, default=2)
 
     def __repr__(self):
         return '[id;{},moisMin:{}, moisMax:{}, tempMin:{}, tempMax:{}, lightMax:{}, lightMin:{}, wateringTime:{}]'.format(
@@ -32,6 +33,10 @@ class Setting(db.Model):
             'lightMin': self.lightMin,
             'wateringTime':self.wateringTime
         }
-class User(db.Model):  # 表名将会是 user（自动生成，小写处理）
-    id = db.Column(db.Integer, primary_key=True)  # 主键
-    name = db.Column(db.String(20))  # 名字
+class History(db.Model):
+    timestamp = db.Column(db.DateTime(timezone=True), server_default=func.now(), primary_key=True)
+    moisture = db.Column(db.REAL,index=True)
+    temperature = db.Column(db.REAL,index=True)
+    light = db.Column(db.REAL,index=True)
+    waterLevel = db.Column(db.Boolean, index=True)
+    

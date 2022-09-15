@@ -1,6 +1,6 @@
 from flask import render_template,request, flash, redirect, session, url_for
 from app import app, db
-from app.models import Setting
+from app.models import Setting, History
 
 
 @app.route('/')
@@ -10,11 +10,20 @@ def index():
 
 @app.route('/historical/')
 def historical():
-    return render_template("historical.html", title="Historical Data")
+    moisData = []
+    entries = History.query.order_by(History.timestamp).all()
+    for entry in entries:
+        moisData.append(entry.moisture)
+    return render_template("historical.html", data={'moisData': moisData}, title="Historical Data")
 
 @app.route('/advance', methods=['GET', 'POST'])
 def advance():
     setting = Setting.query.first()
+    if setting is None:
+        return render_template('advance.html', data={'moisMin': 20, \
+        'moisMax': 70, 'tempMin': 5, 'tempMax': 35, \
+        'lightMax': 5, 'lightMin':2, 'wateringTime': 2}, Title="Default Settings")
+
     return render_template('advance.html', data={'moisMin': setting.moisMin, \
     'moisMax': setting.moisMax, 'tempMin': setting.tempMin, 'tempMax': setting.tempMax, \
     'lightMax': setting.lightMax, 'lightMin': setting.lightMin, 'wateringTime': setting.wateringTime}, Title="Advanced Settings")

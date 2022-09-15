@@ -27,6 +27,11 @@ def historical():
 @app.route('/advance', methods=['GET', 'POST'])
 def advance():
     setting = Setting.query.first()
+    if setting is None:
+        return render_template('advance.html', data={'moisMin': 20, \
+        'moisMax': 70, 'tempMin': 5, 'tempMax': 35, \
+        'lightMax': 5, 'lightMin':2, 'wateringTime': 2}, Title="Default Settings")
+
     return render_template('advance.html', data={'moisMin': setting.moisMin, \
     'moisMax': setting.moisMax, 'tempMin': setting.tempMin, 'tempMax': setting.tempMax, \
     'lightMax': setting.lightMax, 'lightMin': setting.lightMin, 'wateringTime': setting.wateringTime}, Title="Advanced Settings")

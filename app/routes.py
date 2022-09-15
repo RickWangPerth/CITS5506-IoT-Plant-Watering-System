@@ -4,9 +4,13 @@ from app.models import Setting
 
 
 @app.route('/')
-@app.route('/index/')
+@app.route('/index/',methods=['GET'])
 def index():
-    return render_template("index.html", title="Dashboard")
+    setting = Setting.query.first()
+    return render_template("index.html", data={'moisMin': setting.moisMin, \
+    'moisMax': setting.moisMax, 'tempMin': setting.tempMin, 'tempMax': setting.tempMax, \
+    'lightMax': setting.lightMax, 'lightMin': setting.lightMin, 'wateringTime': setting.wateringTime}, title="Dashboard")
+
 
 @app.route('/historical/')
 def historical():
@@ -21,6 +25,7 @@ def advance():
 
 @app.route('/Setting', methods=["POST"])
 def store_Setting():
+
     id = request.json.get("id")
     moisMin = request.json.get("moisMin")
     moisMax = request.json.get("moisMax")

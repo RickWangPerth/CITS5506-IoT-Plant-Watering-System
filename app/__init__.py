@@ -2,10 +2,15 @@ from flask import Flask
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from models import Setting
 
 app = Flask(__name__)
 app.config.from_object(Config)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
+
+@app.shell_context_processor 
+def make_shell_context():
+    return dict(db=db, Setting=Setting)
 
 from app import routes, models

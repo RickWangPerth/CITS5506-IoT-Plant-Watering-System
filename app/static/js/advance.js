@@ -149,6 +149,8 @@ $(window).on('load', () => {
         url: "/Setting",
         type: "POST",
         data: JSON.stringify({ id:2, moisMin: moisMinDefault, moisMax: moisMaxDefault, tempMin:tempMinDefault, tempMax:tempMaxDefault, lightMin:lightMinDefault, lightMax:lightMaxDefault, wateringTime:wateringTimeDefault}),
+        // id:1, moisMin: 20, moisMax: 30, tempMin:5, tempMax:30, lightMin:5, lightMax:15, wateringTime:3
+        //s1= Setting(id=1, moisMin=20, moisMax=30, tempMin=5, tempMax=30, lightMin=5, lightMax=15, wateringTime=3)
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {

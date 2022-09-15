@@ -6,15 +6,32 @@ from app.models import Setting, History
 @app.route('/')
 @app.route('/index/')
 def index():
-    return render_template("index.html", title="Dashboard")
+    history = History.query.first()
+    if history is None:
+        return render_template("index.html", data={'moisture': "null", 'temperature': "null", \
+        'light': "null"}, title="Dashboard")
+    
+    moisture = history.moisture
+    temperature = history.temperature
+    light = history.light
+    return render_template("index.html", data={'moisture': moisture, 'temperature': temperature, \
+    'light': light}, title="Dashboard")
 
 @app.route('/historical/')
 def historical():
     moisData = []
+    tempData = []
+    lightData = []
     entries = History.query.order_by(History.timestamp).all()
+    if entries is None:
+        return render_template("historical.html", data={'moisData': moisData, 'tempData': tempData, \
+        'lightData': lightData}, title="Historical Data")
     for entry in entries:
         moisData.append(entry.moisture)
-    return render_template("historical.html", data={'moisData': moisData}, title="Historical Data")
+        tempData.append(entry.temperature)
+        lightData.append(entry.light)
+    return render_template("historical.html", data={'moisData': moisData, 'tempData': tempData, \
+    'lightData': lightData}, title="Historical Data")
 
 @app.route('/advance', methods=['GET', 'POST'])
 def advance():

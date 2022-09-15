@@ -1,8 +1,14 @@
 {% extends "base.html" %} 
 
 {% block script %}
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="{{ url_for('static', filename='js/historical.js') }}"></script>
+<script>
+  var moisData = {{ data.moisData }}
+  var tempData = {{ data.tempData }}
+  var lightData = {{ data.lightData }}
+</script>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="{{ url_for('static', filename='js/historical.js') }}"></script>
 {% endblock %} 
 
 {% block content %}

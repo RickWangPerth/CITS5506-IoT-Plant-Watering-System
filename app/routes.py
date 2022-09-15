@@ -11,10 +11,18 @@ def index():
 @app.route('/historical/')
 def historical():
     moisData = []
+    tempData = []
+    lightData = []
     entries = History.query.order_by(History.timestamp).all()
+    if entries is None:
+        return render_template("historical.html", data={'moisData': moisData, 'tempData': tempData, \
+        'lightData': lightData}, title="Historical Data")
     for entry in entries:
         moisData.append(entry.moisture)
-    return render_template("historical.html", data={'moisData': moisData}, title="Historical Data")
+        tempData.append(entry.temperature)
+        lightData.append(entry.light)
+    return render_template("historical.html", data={'moisData': moisData, 'tempData': tempData, \
+    'lightData': lightData}, title="Historical Data")
 
 @app.route('/advance', methods=['GET', 'POST'])
 def advance():

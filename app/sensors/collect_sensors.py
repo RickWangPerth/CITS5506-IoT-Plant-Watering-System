@@ -1,16 +1,19 @@
-from camera import Camera
-from moisture_sensor import MoistureSensor
-from temperature_sensor import TemperatureSensor
-from water_level_sensor import WaterLevelSensor
+from app.sensors.camera import Camera
+from app.sensors.moisture_sensor import MoistureSensor
+from app.sensors.temperature_sensor import TemperatureSensor
+from app.sensors.water_level_sensor import WaterLevelSensor
 import ExpanderPi
-import time
+from app.models import History
+from datetime import datetime
 
 class CollectSensors:
     moisture = None
     temperature = None
     water_present = None
 
-    def __init__(self):
+    def __init__(self, db):
+        self.db = db
+
         # Analog I/O
         self.REF_VOLTAGE = 4.096
         self.adc = ExpanderPi.ADC()  # create an instance of the ADC
@@ -19,7 +22,7 @@ class CollectSensors:
         self.TEMPERATURE_PIN = 1
 
         # Digital I/O
-        self.WATER_LEVEL_PIN = 1
+        self.WATER_LEVEL_PIN = 3
         self.io = ExpanderPi.IO()
 
         # Camera
@@ -43,9 +46,9 @@ class CollectSensors:
     def get_current(self):
         self.update()
         return self.moisture, self.temperature, self.water_present
-
-if __name__ == "__main__":
-    sensors = CollectSensors()
-    while True:
-        print(sensors.get_current())
-        time.sleep(0.3)
+    
+    def update_database(self):
+        self.update()
+        history = History(datetime.now(), self.moisture, self.temperature, 0, self.water_present)
+        self.db.session.add(history)
+        self.db.session.commit()

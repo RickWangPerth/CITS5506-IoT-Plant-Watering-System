@@ -6,7 +6,16 @@ from app.models import Setting, History
 @app.route('/')
 @app.route('/index/')
 def index():
-    return render_template("index.html", title="Dashboard")
+    history = History.query.first()
+    if history is None:
+        return render_template("index.html", data={'moisture': "null", 'temperature': "null", \
+        'light': "null"}, title="Dashboard")
+    
+    moisture = history.moisture
+    temperature = history.temperature
+    light = history.light
+    return render_template("index.html", data={'moisture': moisture, 'temperature': temperature, \
+    'light': light}, title="Dashboard")
 
 @app.route('/historical/')
 def historical():

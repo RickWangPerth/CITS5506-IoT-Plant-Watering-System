@@ -1,6 +1,12 @@
 {% extends "base.html" %} 
 {% block script %}
-    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+<script>
+    var moisture = {{ data.moisture }}
+    var temperature = {{ data.temperature }}
+    var sensLight = {{ data.light }}
+  </script>
+
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
 {% endblock %}
 {% block content %}
     <!-- Alarm Text -->
@@ -22,7 +28,7 @@
                         <span class="progress-bar"></span>
                     </span>
                     <div class="progress-value" >
-                        <span id="mois-value"></span><span>%</span>
+                        <span id="mois-value"></span>
                     </div>
                 </div>
             </div>
@@ -38,7 +44,7 @@
                         <span class="progress-bar"></span>
                     </span>
                     <div class="progress-value">
-                        <sapn id="temp-value"></sapn><span>°C</span>
+                        <sapn id="temp-value"></sapn>
                     </div>
                 </div>
             </div>

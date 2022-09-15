@@ -43,12 +43,18 @@ def main():
     # set the reference voltage.  this should be set to the exact voltage
     # measured on the Expander Pi Vref pin.
     adc.set_adc_refvoltage(4.096)
+    
+    WATER_LEVEL_PIN = 1
+    io = ExpanderPi.IO()
+    io.set_pin_direction(WATER_LEVEL_PIN, 1)  # Set port 1, INPUT
+    
 
-    # clear the console
-    os.system('clear')
+    
     while True:
-
-        # read the voltage from channels 1 to 8 single ended mode and print
+        # clear the console
+        os.system('clear')
+        
+        # Temperature sensor
         voltage = adc.read_adc_voltage(1, 0)
         millivolts = 1000.0 * voltage
         kelvin = millivolts / 10.0
@@ -56,9 +62,17 @@ def main():
         sys.stdout.write('Temperature (C):  %f   \n' % celcius)
         sys.stdout.flush()
         
+        # Moisture sensor
         moisture = 100 * adc.read_adc_voltage(2, 0) / 4.096
         sys.stdout.write('Moisture:  %f   \n' % moisture)
         sys.stdout.flush()
+
+        
+        # Water level sensor
+        water_level = io.read_pin(WATER_LEVEL_PIN)
+        sys.stdout.write('Water level:  %s' % water_level + ('HIGH\n' if water_level else 'LOW\n'))
+        sys.stdout.flush()
+        
         
         sys.stdout.write('\033[A\033[A\033[A\033[A\033[A\033[A\033[A\033[A')
         sys.stdout.flush()

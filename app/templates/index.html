@@ -11,6 +11,9 @@
 {% block content %}
     <!-- Alarm Text -->
     <div class="alarm" id="alarm" style="display:none;"></div>
+    <div class="alarm" id="waterAlarm" style="display:none;"></div>
+    <!-- Update Time-->
+    <div class="col-md-12 col-sm-6 sys" id="updateTime">Data update at 19:10:20 20/09/2022</div>
     <!-- Alert-->
     <div id="wateringAlertPlaceholder"></div>
     <!--Darshboard-->
@@ -64,9 +67,17 @@
                     </div>
                 </div>
             </div>
+            <!-- Water Level -->
+            <div class="col-md-2 col-sm-4 sys">
+                <div id="light"> Water level </div>
+                <div class="pt-2"></div>
+                <img src="../static/images/waterlevel/full.png" width="160px" alt="waterlevel" id="waterLevel"/>
+            </div>
             <!--Emoji-->
-            <div class="col-md-6 col-sm-6 sys">
-                <img src="../static/images/emoji/cold.gif" width="200px" alt="emoji" id="emoji"/>
+            <div class="col-md-4 col-sm-4 sys">
+                <div id="light"> Status </div>
+                <div class="pt-2"></div>
+                <img src="../static/images/emoji/cold.gif" width="150px" alt="emoji" id="emoji"/>
             </div>
         </div>
     </div>
@@ -74,15 +85,15 @@
     <div class="container pt-5">
         <div class="row">
             <!--Watering btn-->
-            <div class="col-md-3 col-sm-6 sys pt-5">
+            <div class="col-md-4 col-sm-6 sys pt-5">
                 <button type="button" class="btn btn-primary" id="watering-btn">Watering your plant</button>
             </div>
             <!--Photo btn-->
-            <div class="col-md-3 col-sm-6 sys pt-5">
+            <div class="col-md-4 col-sm-6 sys pt-5">
                 <button type="button" class="btn btn-success" id="photo-btn">Take a photo</button>
             </div>
             <!--photo display-->
-            <div class="col-md-6 col-sm-6 sys pt-5">
+            <div class="col-md-4 col-sm-6 sys pt-5">
                 <img src="../static/images/plant.jpeg" width="200px" alt="plant-photo" id="photo"/>
             </div>
         </div>

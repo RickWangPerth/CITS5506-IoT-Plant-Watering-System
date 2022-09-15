@@ -72,5 +72,4 @@ def store_Setting():
         setting.lightMax = lightMax
         setting.wateringTime = wateringTime
         db.session.commit()
-        flash('Item created.')
     return setting.to_dict()

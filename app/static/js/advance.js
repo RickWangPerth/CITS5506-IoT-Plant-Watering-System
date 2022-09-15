@@ -28,6 +28,19 @@ $(window).on('load', () => {
     document.getElementById("lightMax").value = lightMax;
     document.getElementById("wateringTime").value = wateringTime;
     console.log("success");
+    // alter Place holder
+    const alertPlaceholder = document.getElementById('dataAlertPlaceholder')
+
+    function alert (message, type){
+      const info = document.createElement('div')
+      info.innerHTML = [
+        `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+        `   <div>${message}</div>`,
+        '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+        '</div>'
+      ].join('')
+      alertPlaceholder.append(info)
+    }
 
     // raise alert for inappropriate data
     function dataGapCheck(dataType,gap){
@@ -51,7 +64,6 @@ $(window).on('load', () => {
 
     // Data Range Check
     function dataRangeCheck(dataType,data){
-      const alertPlaceholder = document.getElementById('dataAlertPlaceholder')
       const alert = (message, type) => {
         const info = document.createElement('div')
         info.innerHTML = [
@@ -132,6 +144,7 @@ $(window).on('load', () => {
           console.log(data);
         },
       });
+      alert("Seting updated succefully",'success')
     })
 
     // Clicked update btn
@@ -155,5 +168,9 @@ $(window).on('load', () => {
           console.log(data);
         },
       });
+
+
+      
+
     })
 })

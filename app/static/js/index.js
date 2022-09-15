@@ -14,8 +14,12 @@ $(window).on('load', () => {
      //Moisture
      const highMois = 60
      const lowMois = 20
-     const mois = 30
-     document.getElementById('mois-value').innerHTML = mois
+     const mois = moisture
+     if (mois !== null) { // moisture will be null if there are no moisture values to check
+        document.getElementById('mois-value').innerHTML = mois + "%";
+     } else {
+        document.getElementById('mois-value').innerHTML = "N/A";
+     }
      const moisValue =  document.getElementById('mois-value').innerHTML
  
      const tooMois = moisValue>highMois
@@ -25,10 +29,13 @@ $(window).on('load', () => {
     //Temperature
     const highTemp = 35
     const lowTemp = 5
-    const temp = 36
-    document.getElementById('temp-value').innerHTML = temp
+    const temp = temperature
+    if (temp !== null) {
+        document.getElementById('temp-value').innerHTML = temp + "°C";
+    } else {
+        document.getElementById('temp-value').innerHTML = "N/A";
+    }
     const tempValue = document.getElementById('temp-value').innerHTML
-    console.log(tempValue)
 
     const tooHot = tempValue>highTemp
     const goodTemp = tempValue<highTemp & tempValue>lowTemp
@@ -37,8 +44,13 @@ $(window).on('load', () => {
     //Light
     const highLight = 60
     const lowLight = 20
-    const light = 15
-    document.getElementById('light-value').innerHTML  = light
+    const light = sensLight
+    console.log(light)
+    if (light !== null) {
+        document.getElementById('light-value').innerHTML  = light;
+    } else {
+        document.getElementById('light-value').innerHTML  = "N/A";
+    }
     const lightValue = document.getElementById('light-value').innerHTML
 
     //Watering

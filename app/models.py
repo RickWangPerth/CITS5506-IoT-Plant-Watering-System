@@ -1,4 +1,4 @@
-from app import db
+from app import db, app
 from sqlalchemy.sql import func
 
 class Setting(db.Model):

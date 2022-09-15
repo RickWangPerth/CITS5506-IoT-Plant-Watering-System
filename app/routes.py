@@ -1,6 +1,6 @@
 from flask import render_template,request, flash, redirect, session, url_for
 from app import app, db
-from app.models import Setting
+from app.models import Setting, History
 
 
 @app.route('/')
@@ -10,7 +10,11 @@ def index():
 
 @app.route('/historical/')
 def historical():
-    return render_template("historical.html", title="Historical Data")
+    moisData = []
+    entries = History.query.order_by(History.timestamp).all()
+    for entry in entries:
+        moisData.append(entry.moisture)
+    return render_template("historical.html", data={'moisData': moisData}, title="Historical Data")
 
 @app.route('/advance', methods=['GET', 'POST'])
 def advance():

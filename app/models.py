@@ -32,6 +32,10 @@ class Setting(db.Model):
             'lightMin': self.lightMin,
             'wateringTime':self.wateringTime
         }
-class User(db.Model):  # 表名将会是 user（自动生成，小写处理）
-    id = db.Column(db.Integer, primary_key=True)  # 主键
-    name = db.Column(db.String(20))  # 名字
+class History(db.Model):
+    timestamp = db.Column(db.DateTime(timezone=True), server_default=func.now(), primary_key=True)
+    moisture = db.Column(db.REAL,index=True)
+    temperature = db.Column(db.REAL,index=True)
+    light = db.Column(db.REAL,index=True)
+    waterLevel = db.Column(db.Boolean, index=True)
+    

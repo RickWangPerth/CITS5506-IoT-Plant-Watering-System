@@ -1,17 +1,4 @@
 #!/usr/bin/env python
-"""
-================================================
-# ABElectronics Expander Pi | ADC Read Demo
-#
-# Requires python smbus to be installed
-# For Python 2 install with: sudo apt-get install python-smbus
-# For Python 3 install with: sudo apt-get install python3-smbus
-#
-# run with: python demo_adcread.py
-================================================
-
-this demo reads the voltage from channel 1 on the ADC inputs
-"""
 
 from __future__ import absolute_import, division, print_function, \
                                                     unicode_literals

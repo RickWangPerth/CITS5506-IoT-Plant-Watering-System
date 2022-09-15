@@ -58,26 +58,27 @@ def store_Setting():
     print(request.json, 'sss')
 
     setting = Setting.query.first()
-    setting.moisMin = moisMin
-    setting.moisMax = moisMax
-    setting.tempMin = tempMin
-    setting.tempmax = tempMax
-    setting.lightMin = lightMin
-    setting.lightMax = lightMax
-    setting.wateringTime = wateringTime
-    db.session.commit()
-
-    # setting = Setting(
-    #     id = id,
-    #     moisMin = moisMin,
-    #     moisMax = moisMax,
-    #     tempMin  = tempMin,
-    #     tempMax = tempMax,
-    #     lightMax = lightMax,
-    #     lightMin = lightMin,
-    #     wateringTime = wateringTime
-    # )
-    # db.session.add(setting)
-    # db.session.commit()
-    flash('Item created.')
+    if setting is None:
+        # add defalut setting
+        setting = Setting(
+        id = 1,
+        moisMin = 20,
+        moisMax = 70,
+        tempMin  = 5,
+        tempMax = 35,
+        lightMax = 5,
+        lightMin = 2,
+        wateringTime = 2)
+        db.session.add(setting)
+        db.session.commit()
+    else:
+        db.session.commit()
+        setting.moisMin = moisMin
+        setting.moisMax = moisMax
+        setting.tempMin = tempMin
+        setting.tempmax = tempMax
+        setting.lightMin = lightMin
+        setting.lightMax = lightMax
+        setting.wateringTime = wateringTime
+        db.session.commit()
     return setting.to_dict()

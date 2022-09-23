@@ -6,7 +6,10 @@ $(window).on('load', () => {
     const wateralarm = document.getElementById("waterAlarm")
 
     //Update time
-    const updateTime = document.getElementById("updateTime")
+    const updateTimeElement = document.getElementById("updateTime")
+    var d = new Date(0);
+    d.setUTCSeconds(lastUpdated);
+    updateTimeElement.textContent = d.toLocaleDateString() + " " + d.toLocaleTimeString();
 
     //Emoji
     const cold = "../static/images/emoji/cold.gif"

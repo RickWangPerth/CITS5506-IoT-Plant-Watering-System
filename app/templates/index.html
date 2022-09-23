@@ -4,6 +4,7 @@
     var moisture = {{ data.moisture }}
     var temperature = {{ data.temperature }}
     var sensLight = {{ data.light }}
+    var lastUpdated = {{ data.updateTime }}
   </script>
 
 <script src="{{ url_for('static', filename='js/index.js') }}"></script>
@@ -13,7 +14,7 @@
     <div class="alarm" id="alarm" style="display:none;"></div>
     <div class="alarm" id="waterAlarm" style="display:none;"></div>
     <!-- Update Time-->
-    <div class="col-md-12 col-sm-6 sys" id="updateTime">Data update at 19:10:20 20/09/2022</div>
+    <div class="col-md-12 col-sm-6 sys">Data last updated at <span id="updateTime">(None)</span></div>
     <!-- Alert-->
     <div id="wateringAlertPlaceholder"></div>
     <!--Darshboard-->

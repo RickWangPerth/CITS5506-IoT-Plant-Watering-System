@@ -1,8 +1,12 @@
 'use strict'
 $(window).on('load', () => {
 
-    // Alarm
+    //Alarm
     const alarm = document.getElementById("alarm")
+    const wateralarm = document.getElementById("waterAlarm")
+
+    //Update time
+    const updateTime = document.getElementById("updateTime")
 
     //Emoji
     const cold = "../static/images/emoji/cold.gif"
@@ -52,6 +56,23 @@ $(window).on('load', () => {
 
     //Watering
     const wateringButton = document.getElementById('watering-btn')
+
+    // Water level
+    const waterLevelvalue = 0
+    const full = "../static/images/waterlevel/full.png"
+    const empty = "../static/images/waterlevel/empyt.png"
+    const waterLevel = document.getElementById('waterLevel')
+
+    if (waterLevelvalue == 1){
+        waterLevel.src = full
+        waterLevel.alt = "full"
+    }else{
+        waterLevel.src = empty
+        waterLevel.alt = "empty"
+        wateralarm.style.display = "block"
+        wateralarm.innerHTML = "Water tank is empty, please add water!"
+        wateringButton.disabled = true
+    }
 
     //Photo
     const photo = document.getElementById('photo')

@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import time
 from apscheduler.schedulers.background import BackgroundScheduler
+from sys import platform
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = '550555055505'
@@ -13,18 +14,20 @@ migrate = Migrate(app, db)
 
 
 from app import routes, models
-from app.sensors.collect_sensors import CollectSensors
-import atexit
 
-sensors = CollectSensors(db)
+if platform == "linux":
+    from app.sensors.collect_sensors import CollectSensors
+    import atexit
+
+    sensors = CollectSensors(db)
 
 
-scheduler = BackgroundScheduler()
-scheduler.add_job(func=sensors.update_database, trigger="interval", seconds=3)
-scheduler.start()
+    scheduler = BackgroundScheduler()
+    scheduler.add_job(func=sensors.update_database, trigger="interval", seconds=3)
+    scheduler.start()
 
-# Shut down the scheduler when exiting the app
-atexit.register(lambda: scheduler.shutdown())
+    # Shut down the scheduler when exiting the app
+    atexit.register(lambda: scheduler.shutdown())
 
 
 @app.shell_context_processor

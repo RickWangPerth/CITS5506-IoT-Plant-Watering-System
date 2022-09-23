@@ -6,8 +6,8 @@ body{
     background-color: skyblue;
 }
 .sys{
-    text-align: center;
-    align-self:center
+    text-align:center;
+    align-self:center;
 }
 .alarm{
     color: black;

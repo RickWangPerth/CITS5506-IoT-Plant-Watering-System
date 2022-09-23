@@ -7,11 +7,13 @@ if platform == "linux":
     from app.sensors.water_level_sensor import WaterLevelSensor
     from app.models import History
     from datetime import datetime
+    from app.sensors.VEML6030.PiicoDev_VEML6030 import PiicoDev_VEML6030
 
 class CollectSensors:
     moisture = None
     temperature = None
     water_present = None
+    light_value = None
 
     def __init__(self, db):
         self.db = db
@@ -35,6 +37,7 @@ class CollectSensors:
         self.moisture_sensor = MoistureSensor(self.adc, self.REF_VOLTAGE, self.MOISTURE_PIN)
         self.temperature_sensor = TemperatureSensor(self.adc, self.TEMPERATURE_PIN)
         self.water_level_sensor = WaterLevelSensor(self.io, self.WATER_LEVEL_PIN)
+        self.light_sensor = PiicoDev_VEML6030()
 
         # Get initial readings
         self.update()
@@ -43,6 +46,7 @@ class CollectSensors:
         self.moisture = self.moisture_sensor.get_moisture()
         self.temperature = self.temperature_sensor.get_temp()
         self.water_present = self.water_level_sensor.water_detected()
+        self.light_value = self.light_sensor.read()
         self.camera.save_picture()
     
     def get_current(self):
@@ -51,7 +55,7 @@ class CollectSensors:
     
     def update_database(self):
         self.update()
-        history = History(datetime.now(), self.moisture, self.temperature, 0, self.water_present)
+        history = History(datetime.now(), self.moisture, self.temperature, self.light_value, self.water_present)
         self.db.session.add(history)
         self.db.session.commit()
         History.delete_expired()

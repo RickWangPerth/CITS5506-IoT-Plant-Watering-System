@@ -1,7 +1,7 @@
 # PiicoDev VEML6030 Ambient Light Sensor piico.dev/p3
 # Written by Michael Ruppe at Core Electronics MAR 2021
 
-from PiicoDev_Unified import *
+from app.sensors.VEML6030.PiicoDev_Unified import *
 
 compat_str = '\nUnified PiicoDev library out of date.  Get the latest module: https://piico.dev/unified \n'
 

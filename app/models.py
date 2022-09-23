@@ -1,6 +1,7 @@
 from email.policy import default
 from app import db
 from sqlalchemy.sql import func
+import datetime
 
 class Setting(db.Model):
     id = db.Column(db.Integer, primary_key=True, default=1)
@@ -47,3 +48,12 @@ class History(db.Model):
         self.light = light
         self.waterLevel = waterLevel
     
+    @classmethod
+    def delete_expired(cls):
+        expiration = datetime.timedelta(seconds=30)
+        limit = datetime.datetime.now() - expiration
+        cls.query.filter(cls.timestamp <= limit).delete()
+        db.session.commit()
+
+    def __str__(self):
+        return str((self.timestamp, self.moisture, self.temperature, self.light, self.waterLevel))

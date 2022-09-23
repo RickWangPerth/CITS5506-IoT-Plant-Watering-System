@@ -10,13 +10,15 @@ class Camera:
         self.keep_num_photos = keep_num_photos
         if not os.path.exists(self.photos_folder):
             os.makedirs(self.photos_folder)
+        self.latest_image = None
     
     def save_picture(self):
         for filename in sorted(os.listdir(self.photos_folder))[:-self.keep_num_photos]:  # Keep the n most recent
             filename_relPath = os.path.join(self.photos_folder,filename)
             os.remove(filename_relPath)
 
-        self.camera.capture(f'{self.photos_folder}/{datetime.datetime.now()}.jpg')
+        self.latest_image = f'{self.photos_folder}/{datetime.datetime.now()}.jpg'
+        self.camera.capture(self.latest_image)
     
     def camera_5s_preview(self):
         self.start_video()

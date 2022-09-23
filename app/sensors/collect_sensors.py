@@ -30,7 +30,7 @@ class CollectSensors:
         self.io = ExpanderPi.IO()
 
         # Camera
-        self.PHOTOS_FOLDER = '/home/cits5506/plant_photos'
+        self.PHOTOS_FOLDER = '/home/cits5506/CITS5506-IoT-Plant-Watering-System/app/static/images/plant_photos'
         self.KEEP_PHOTOS = 10
 
         self.camera = Camera(self.PHOTOS_FOLDER, self.KEEP_PHOTOS)

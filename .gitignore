@@ -135,3 +135,5 @@ dmypy.json
 *.db
 
 migrations/
+
+plant_photos/

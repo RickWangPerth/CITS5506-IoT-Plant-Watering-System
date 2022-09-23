@@ -44,10 +44,9 @@ $(window).on('load', () => {
     const tooCold = temp<lowTemp
    
     //Light
-    const highLight = 60
+    const highLight = 350
     const lowLight = 20
     const light = sensLight
-    console.log(light)
     if (light !== null) {
         document.getElementById('light-value').innerHTML  = Math.round(light) + " Lux";
     } else {
@@ -77,6 +76,16 @@ $(window).on('load', () => {
     //Photo
     const photo = document.getElementById('photo')
     const photoButton = document.getElementById('photo-btn')
+    $.ajax({
+        url: "/latest_picture/",
+        type: "GET",
+        // data: JSON.stringify({}),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+          photo.src = data.image_path
+        },
+      });
 
     // Emoji & Alarm feature
     if(tooCold){

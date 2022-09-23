@@ -19,11 +19,11 @@ if platform == "linux":
     from app.sensors.collect_sensors import CollectSensors
     import atexit
 
-    sensors = CollectSensors(db)
+    collect_sensors = CollectSensors(db)
 
 
     scheduler = BackgroundScheduler()
-    scheduler.add_job(func=sensors.update_database, trigger="interval", seconds=3)
+    scheduler.add_job(func=collect_sensors.update_database, trigger="interval", seconds=3)
     scheduler.start()
 
     # Shut down the scheduler when exiting the app

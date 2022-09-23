@@ -1,7 +1,7 @@
+import os
 from flask import render_template,request, flash, redirect, session, url_for
 from app import app, db
 from app.models import Setting, History
-
 
 @app.route('/')
 @app.route('/index/')
@@ -82,3 +82,8 @@ def store_Setting():
         setting.wateringTime = wateringTime
         db.session.commit()
     return setting.to_dict()
+
+@app.route('/latest_picture/', methods=["GET"])
+def get_latest_picture():
+    from app import collect_sensors  # Only import after initialisation
+    return {'image_path': collect_sensors.camera.latest_image.split("app/")[1]}, 200

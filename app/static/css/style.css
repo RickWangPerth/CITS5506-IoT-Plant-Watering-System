@@ -189,3 +189,8 @@ footer{
     text-align: center;
     background-color:  darkseagreen;;
 }
+
+#photo {
+    width: 100%;
+    height: auto;
+}

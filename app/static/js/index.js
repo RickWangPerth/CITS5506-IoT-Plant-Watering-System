@@ -20,7 +20,7 @@ $(window).on('load', () => {
      const lowMois = 20
      const mois = moisture
      if (mois !== null) { // moisture will be null if there are no moisture values to check
-        document.getElementById('mois-value').innerHTML = mois + "%";
+        document.getElementById('mois-value').innerHTML = Math.round(mois) + "%";
      } else {
         document.getElementById('mois-value').innerHTML = "N/A";
      }
@@ -34,7 +34,7 @@ $(window).on('load', () => {
     const lowTemp = 5
     const temp = temperature
     if (temp !== null) {
-        document.getElementById('temp-value').innerHTML = temp + "°C";
+        document.getElementById('temp-value').innerHTML = temp.toFixed(1) + "°C";
     } else {
         document.getElementById('temp-value').innerHTML = "N/A";
     }
@@ -49,7 +49,7 @@ $(window).on('load', () => {
     const light = sensLight
     console.log(light)
     if (light !== null) {
-        document.getElementById('light-value').innerHTML  = light;
+        document.getElementById('light-value').innerHTML  = Math.round(light) + " Lux";
     } else {
         document.getElementById('light-value').innerHTML  = "N/A";
     }

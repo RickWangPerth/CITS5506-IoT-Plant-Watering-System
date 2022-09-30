@@ -87,3 +87,8 @@ def store_Setting():
 @app.route('/latest_picture/', methods=["GET"])
 def get_latest_picture():
     return {'image_path': collect_sensors.camera.latest_image.split("app/")[1]}, 200
+
+@app.route('/take_picture', methods=["GET"])
+def take_picture():
+    collect_sensors.camera.save_picture()
+    return {'image_path': collect_sensors.camera.latest_image.split("app/")[1]}, 200

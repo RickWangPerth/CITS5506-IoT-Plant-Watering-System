@@ -40,21 +40,20 @@ class CollectSensors:
         self.light_sensor = PiicoDev_VEML6030()
 
         # Get initial readings
-        self.update()
+        self.update_sensors()
     
-    def update(self):
+    def update_sensors(self):
         self.moisture = self.moisture_sensor.get_moisture()
         self.temperature = self.temperature_sensor.get_temp()
         self.water_present = self.water_level_sensor.water_detected()
         self.light_value = self.light_sensor.read()
-        self.camera.save_picture()
     
     def get_current(self):
-        self.update()
-        return self.moisture, self.temperature, self.water_present
+        self.update_sensors()
+        return self.moisture, self.temperature, self.water_present, self.light_value
     
     def update_database(self):
-        self.update()
+        self.update_sensors()
         history = History(datetime.now(), self.moisture, self.temperature, self.light_value, self.water_present)
         self.db.session.add(history)
         self.db.session.commit()

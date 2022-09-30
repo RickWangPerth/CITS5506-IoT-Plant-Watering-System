@@ -33,3 +33,4 @@ class Camera:
 if __name__ == '__main__':
     camera = Camera()
     camera.camera_5s_preview()
+    camera.camera.close()

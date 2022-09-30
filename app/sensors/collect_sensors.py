@@ -44,7 +44,7 @@ class CollectSensors:
 
         # Camera
         self.PHOTOS_FOLDER = '/home/cits5506/CITS5506-IoT-Plant-Watering-System/app/static/images/plant_photos'
-        self.KEEP_PHOTOS = 10
+        self.KEEP_PHOTOS = 100
 
         self.camera = Camera(self.PHOTOS_FOLDER, self.KEEP_PHOTOS)
         self.moisture_sensor = MoistureSensor(self.adc, self.REF_VOLTAGE, self.MOISTURE_PIN)
@@ -53,10 +53,11 @@ class CollectSensors:
         self.light_sensor = PiicoDev_VEML6030()
 
         # Get initial readings
-        self.update()
+        self.update_sensors()
     
     def update(self):
         self.get_setting()
+    def update_sensors(self):
         self.moisture = self.moisture_sensor.get_moisture()
         self.temperature = self.temperature_sensor.get_temp()
         self.water_present = self.water_level_sensor.water_detected()
@@ -85,8 +86,8 @@ class CollectSensors:
             self.lightAlert = 2
     
     def get_current(self):
-        self.update()
-        return self.moisture, self.temperature, self.water_present
+        self.update_sensors()
+        return self.moisture, self.temperature, self.water_present, self.light_value
     
     def get_setting(self):
         setting = Setting.query.first()
@@ -107,9 +108,17 @@ class CollectSensors:
         return True
     
     def update_database(self):
-        self.update()
-        #history = History(datetime.now(), self.moisture, self.temperature, self.light_value, self.water_present)
-        history = History(datetime.now(), self.moisture, self.temperature, self.light_value, self.water_present, self.moisAlert, self.tempAlert, self.lightAlert, self.waterLevelAlert)
+        self.update_sensors()
+        history = History(datetime.now(), 
+                            int(self.moisture), 
+                            round(self.temperature, 1), 
+                            int(self.light_value), 
+                            self.water_present,
+                            int(self.moisAlert),
+                            int(self.tempAlert),
+                            int(self.lightAlert),
+                            int(self.waterLevelAlert))
+
         self.db.session.add(history)
         self.db.session.commit()
         History.delete_expired()

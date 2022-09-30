@@ -13,22 +13,25 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 
-from app import routes, models
-
 if platform == "linux":
     from app.sensors.collect_sensors import CollectSensors
     import atexit
 
     collect_sensors = CollectSensors(db)
 
-
     scheduler = BackgroundScheduler()
     scheduler.add_job(func=collect_sensors.update_database, trigger="interval", seconds=3)
     scheduler.start()
 
-    # Shut down the scheduler when exiting the app
-    atexit.register(lambda: scheduler.shutdown())
+    def shutdown():
+        print("Stopping...")
+        collect_sensors.camera.camera.close()
+        scheduler.shutdown()
 
+    # Shut down the scheduler when exiting the app
+    atexit.register(shutdown)
+
+from app import models, routes
 
 @app.shell_context_processor
 def make_shell_context():

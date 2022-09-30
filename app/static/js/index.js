@@ -88,7 +88,20 @@ $(window).on('load', () => {
         success: function (data) {
           photo.src = data.image_path
         },
-      });
+    });
+    
+    // When 'Take Photo' button is clicked
+    photoButton.addEventListener('click', () => {
+        $.ajax({
+            url: "/take_picture",
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                photo.src = data.image_path;
+            },
+        });
+    })
 
     // Emoji & Alarm feature
     if(tooCold){
@@ -150,7 +163,7 @@ $(window).on('load', () => {
     }
 
     //Light bar keyframe
-    const lightHalf = 20
+    const lightHalf = 600
     if(light>lightHalf){
         var degreeRight = 180
         var keyframe = "@keyframes loading-"+type[4]+"{0%{-webkit-transform: rotate(0deg);transform: rotate(0deg);}100%{-webkit-transform: rotate("+ degreeRight +"deg);transform: rotate("+ degreeRight + "deg);}"

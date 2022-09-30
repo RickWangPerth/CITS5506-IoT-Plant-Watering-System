@@ -4,6 +4,7 @@ from sqlalchemy.sql import func
 import datetime
 
 class Setting(db.Model):
+    __tablename__ = "setting"
     id = db.Column(db.Integer, primary_key=True, default=1)
     moisMin = db.Column(db.Integer,index=True, default=20)
     moisMax = db.Column(db.Integer,index=True, default=70)
@@ -12,18 +13,18 @@ class Setting(db.Model):
     lightMax = db.Column(db.Integer,index=True, default=2)
     lightMin = db.Column(db.Integer,index=True, default=5)
     wateringTime = db.Column(db.Integer,index=True, default=2)
-    #alertMessage = db.Column(db.Text, index=True, default="Normal")
+    pictureFrequency = db.Column(db.Integer,index=True, default=2)
 
     def __repr__(self):
-        return '[id;{},moisMin:{}, moisMax:{}, tempMin:{}, tempMax:{}, lightMax:{}, lightMin:{}, wateringTime:{}, alertMessage{}]'.format(
+        return '[id;{},moisMin:{}, moisMax:{}, tempMin:{}, tempMax:{}, lightMax:{}, lightMin:{}, wateringTime:{}, pictureFrequency: {}]'.format(
             self.id,
             self.moisMin,
             self.moisMax,
             self.tempMin,
             self.lightMax,
             self.lightMin,
-            self.wateringTime)
-            #self.alertMessage)
+            self.wateringTime,
+            self.pictureFrequency)
 
     def to_dict(self):
         return {
@@ -34,8 +35,9 @@ class Setting(db.Model):
             'tempMax': self.tempMax,
             'lightMax': self.lightMax,
             'lightMin': self.lightMin,
-            'wateringTime':self.wateringTime
+            'wateringTime':self.wateringTime,
             #'alertMessage':self.alertMessage
+            'pictureFrequency':self.pictureFrequency
         }
 class History(db.Model):
     timestamp = db.Column(db.DateTime(timezone=True), server_default=func.now(), primary_key=True)

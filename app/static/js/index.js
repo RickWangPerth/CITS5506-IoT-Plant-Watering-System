@@ -168,11 +168,11 @@ $(window).on('load', () => {
         var degreeRight = 180
         var keyframe = "@keyframes loading-"+type[4]+"{0%{-webkit-transform: rotate(0deg);transform: rotate(0deg);}100%{-webkit-transform: rotate("+ degreeRight +"deg);transform: rotate("+ degreeRight + "deg);}"
         styleSheet.insertRule(keyframe,styleSheet.cssRules.length)
-        var degreeLeft = (light-lightHalf)/100*360
+        var degreeLeft = (light-lightHalf)/500*360
         var keyframe = "@keyframes loading-"+type[5]+"{0%{-webkit-transform: rotate(0deg);transform: rotate(0deg);}100%{-webkit-transform: rotate("+ degreeLeft +"deg);transform: rotate("+ degreeLeft + "deg);}"
         styleSheet.insertRule(keyframe,styleSheet.cssRules.length)
     }else{
-        var degreeRight = light/20*180
+        var degreeRight = light/500*180
         var keyframe = "@keyframes loading-"+type[4]+"{0%{-webkit-transform: rotate(0deg);transform: rotate(0deg);}100%{-webkit-transform: rotate("+ degreeRight +"deg);transform: rotate("+ degreeRight + "deg);}"
         styleSheet.insertRule(keyframe,styleSheet.cssRules.length)
     }

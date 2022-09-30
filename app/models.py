@@ -12,9 +12,10 @@ class Setting(db.Model):
     lightMax = db.Column(db.Integer,index=True, default=2)
     lightMin = db.Column(db.Integer,index=True, default=5)
     wateringTime = db.Column(db.Integer,index=True, default=2)
+    #alertMessage = db.Column(db.Text, index=True, default="Normal")
 
     def __repr__(self):
-        return '[id;{},moisMin:{}, moisMax:{}, tempMin:{}, tempMax:{}, lightMax:{}, lightMin:{}, wateringTime:{}]'.format(
+        return '[id;{},moisMin:{}, moisMax:{}, tempMin:{}, tempMax:{}, lightMax:{}, lightMin:{}, wateringTime:{}, alertMessage{}]'.format(
             self.id,
             self.moisMin,
             self.moisMax,
@@ -22,6 +23,7 @@ class Setting(db.Model):
             self.lightMax,
             self.lightMin,
             self.wateringTime)
+            #self.alertMessage)
 
     def to_dict(self):
         return {
@@ -33,6 +35,7 @@ class Setting(db.Model):
             'lightMax': self.lightMax,
             'lightMin': self.lightMin,
             'wateringTime':self.wateringTime
+            #'alertMessage':self.alertMessage
         }
 class History(db.Model):
     timestamp = db.Column(db.DateTime(timezone=True), server_default=func.now(), primary_key=True)
@@ -40,13 +43,21 @@ class History(db.Model):
     temperature = db.Column(db.REAL,index=True)
     light = db.Column(db.REAL,index=True)
     waterLevel = db.Column(db.Boolean, index=True)
+    moistureAlert = db.Column(db.Integer, index=True, default=0)
+    temperatureAlert = db.Column(db.Integer, index=True, default=0)
+    lightAlert = db.Column(db.Integer, index=True, default=0)
+    waterLevelAlert = db.Column(db.Integer, index=True, default=0)
 
-    def __init__(self, timestamp, moisture, temperature, light, waterLevel):
+    def __init__(self, timestamp, moisture, temperature, light, waterLevel, moistureAlert, temperatureAlert, lightAlert, waterLevelAlert):
         self.timestamp = timestamp
         self.moisture = moisture
         self.temperature = temperature
         self.light = light
         self.waterLevel = waterLevel
+        self.moistureAlert = moistureAlert
+        self.temperatureAlert = temperatureAlert
+        self.lightAlert = lightAlert
+        self.waterLevelAlert = waterLevelAlert
     
     @classmethod
     def delete_expired(cls):
@@ -56,4 +67,4 @@ class History(db.Model):
         db.session.commit()
 
     def __str__(self):
-        return str((self.timestamp, self.moisture, self.temperature, self.light, self.waterLevel))
+        return str((self.timestamp, self.moisture, self.temperature, self.light, self.waterLevel, self.alertMessage))

@@ -2,32 +2,35 @@ import os
 from flask import render_template,request, flash, redirect, session, url_for
 from app import app, db
 from app.models import Setting, History
-from app import collect_sensors, scheduler
+from sys import platform
+if platform == "linux":
+    from app import collect_sensors, scheduler
 
 camera_schedule_job = None
 
 @app.before_first_request
 def start_camera():
-    global camera_schedule_job
-    setting = Setting.query.first()
-    if setting is None:
-        setting = Setting(
-            id = 1,
-            moisMin = 20,
-            moisMax = 70,
-            tempMin  = 5,
-            tempMax = 35,
-            lightMax = 5,
-            lightMin = 2,
-            wateringTime = 2,
-            pictureFrequency = 2)
-        db.session.add(setting)
-        db.session.commit()
+    if platform == "linux":
+        global camera_schedule_job
+        setting = Setting.query.first()
+        if setting is None:
+            setting = Setting(
+                id = 1,
+                moisMin = 20,
+                moisMax = 70,
+                tempMin  = 5,
+                tempMax = 35,
+                lightMax = 5,
+                lightMin = 2,
+                wateringTime = 2,
+                pictureFrequency = 2)
+            db.session.add(setting)
+            db.session.commit()
 
-    collect_sensors.camera.save_picture()
+        collect_sensors.camera.save_picture()
 
-    frequency = setting.pictureFrequency if setting.pictureFrequency is not None else 2
-    camera_schedule_job = scheduler.add_job(func=collect_sensors.camera.save_picture, trigger="interval", hours=frequency)
+        frequency = setting.pictureFrequency if setting.pictureFrequency is not None else 2
+        camera_schedule_job = scheduler.add_job(func=collect_sensors.camera.save_picture, trigger="interval", hours=frequency)
 
 
 @app.route('/')

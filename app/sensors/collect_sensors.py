@@ -55,9 +55,8 @@ class CollectSensors:
         # Get initial readings
         self.update_sensors()
     
-    def update(self):
-        self.get_setting()
     def update_sensors(self):
+        self.get_setting()
         self.moisture = self.moisture_sensor.get_moisture()
         self.temperature = self.temperature_sensor.get_temp()
         self.water_present = self.water_level_sensor.water_detected()
@@ -90,7 +89,10 @@ class CollectSensors:
         return self.moisture, self.temperature, self.water_present, self.light_value
     
     def get_setting(self):
-        setting = Setting.query.first()
+        try:
+            setting = Setting.query.first()
+        except:
+            setting = None
         if setting is None:
             self.moisMin = 20
             self.moisMax = 70

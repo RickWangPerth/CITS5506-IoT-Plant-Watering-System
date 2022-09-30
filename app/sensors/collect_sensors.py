@@ -54,7 +54,11 @@ class CollectSensors:
     
     def update_database(self):
         self.update_sensors()
-        history = History(datetime.now(), self.moisture, self.temperature, self.light_value, self.water_present)
+        history = History(datetime.now(), 
+                            int(self.moisture), 
+                            round(self.temperature, 1), 
+                            int(self.light_value), 
+                            self.water_present)
         self.db.session.add(history)
         self.db.session.commit()
         History.delete_expired()

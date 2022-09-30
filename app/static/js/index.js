@@ -60,7 +60,7 @@ $(window).on('load', () => {
     const wateringButton = document.getElementById('watering-btn')
 
     // Water level
-    const waterLevelvalue = 0
+    const waterLevelvalue = 1 // TODO
     const full = "../static/images/waterlevel/full.png"
     const empty = "../static/images/waterlevel/empyt.png"
     const waterLevel = document.getElementById('waterLevel')
@@ -190,10 +190,17 @@ $(window).on('load', () => {
         alertPlaceholder.append(info)
       }
       
-      const alertTrigger = wateringButton
-      if (alertTrigger) {
-        alertTrigger.addEventListener('click', () => {
-          alert('Great, watering will finish in 2 minutes', 'success')
-        })
-      }
+    wateringButton.addEventListener('click', () => {
+        wateringButton.disabled = true;
+        $.ajax({
+            url: "/water_plant/",
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+              window.alert("Plant watered.");
+              wateringButton.disabled = false;
+            },
+        });
+    })
 })

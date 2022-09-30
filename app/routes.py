@@ -3,13 +3,15 @@ from flask import render_template,request, flash, redirect, session, url_for
 from app import app, db
 from app.models import Setting, History
 from sys import platform
+import time
 if platform == "linux":
-    from app import collect_sensors, scheduler
+    from app import collect_sensors, scheduler, pump
 
 camera_schedule_job = None
 
 @app.before_first_request
 def start_camera():
+    print("Running")
     if platform == "linux":
         global camera_schedule_job
         setting = Setting.query.first()
@@ -126,3 +128,10 @@ def get_latest_picture():
 def take_picture():
     collect_sensors.camera.save_picture()
     return get_latest_picture()
+
+@app.route('/water_plant/', methods=["GET"])
+def water_plant_fixed():
+    pump.on()
+    time.sleep(3)
+    pump.off()
+    return {'success': True}, 200

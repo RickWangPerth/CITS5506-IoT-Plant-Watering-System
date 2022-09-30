@@ -163,7 +163,7 @@ $(window).on('load', () => {
     }
 
     //Light bar keyframe
-    const lightHalf = 20
+    const lightHalf = 600
     if(light>lightHalf){
         var degreeRight = 180
         var keyframe = "@keyframes loading-"+type[4]+"{0%{-webkit-transform: rotate(0deg);transform: rotate(0deg);}100%{-webkit-transform: rotate("+ degreeRight +"deg);transform: rotate("+ degreeRight + "deg);}"

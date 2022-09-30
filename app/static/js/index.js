@@ -88,7 +88,20 @@ $(window).on('load', () => {
         success: function (data) {
           photo.src = data.image_path
         },
-      });
+    });
+    
+    // When 'Take Photo' button is clicked
+    photoButton.addEventListener('click', () => {
+        $.ajax({
+            url: "/take_picture",
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                photo.src = data.image_path;
+            },
+        });
+    })
 
     // Emoji & Alarm feature
     if(tooCold){

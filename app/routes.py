@@ -25,7 +25,9 @@ def start_camera():
         db.session.commit()
 
     collect_sensors.camera.save_picture()
-    camera_schedule_job = scheduler.add_job(func=collect_sensors.camera.save_picture, trigger="interval", hours=setting.pictureFrequency)
+
+    frequency = setting.pictureFrequency if setting.pictureFrequency is not None else 2
+    camera_schedule_job = scheduler.add_job(func=collect_sensors.camera.save_picture, trigger="interval", hours=frequency)
 
 
 @app.route('/')

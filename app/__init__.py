@@ -19,7 +19,6 @@ if platform == "linux":
 
     collect_sensors = CollectSensors(db)
 
-
     scheduler = BackgroundScheduler()
     scheduler.add_job(func=collect_sensors.update_database, trigger="interval", seconds=3)
     scheduler.start()
@@ -32,7 +31,7 @@ if platform == "linux":
     # Shut down the scheduler when exiting the app
     atexit.register(shutdown)
 
-from app import routes, models
+from app import models, routes
 
 @app.shell_context_processor
 def make_shell_context():

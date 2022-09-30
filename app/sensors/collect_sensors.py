@@ -31,7 +31,7 @@ class CollectSensors:
 
         # Camera
         self.PHOTOS_FOLDER = '/home/cits5506/CITS5506-IoT-Plant-Watering-System/app/static/images/plant_photos'
-        self.KEEP_PHOTOS = 10
+        self.KEEP_PHOTOS = 100
 
         self.camera = Camera(self.PHOTOS_FOLDER, self.KEEP_PHOTOS)
         self.moisture_sensor = MoistureSensor(self.adc, self.REF_VOLTAGE, self.MOISTURE_PIN)

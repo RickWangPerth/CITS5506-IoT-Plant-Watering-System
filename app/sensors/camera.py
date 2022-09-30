@@ -10,6 +10,7 @@ class Camera:
         self.keep_num_photos = keep_num_photos
         if not os.path.exists(self.photos_folder):
             os.makedirs(self.photos_folder)
+
         self.latest_image = None
     
     def save_picture(self):

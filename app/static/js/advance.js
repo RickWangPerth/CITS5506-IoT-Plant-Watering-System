@@ -6,14 +6,15 @@ $(window).on('load', () => {
     const moisMinDefault = 20
     const tempMaxDefault = 35
     const tempMinDefault = 5
-    const lightMaxDefault = 5
-    const lightMinDefault = 2
+    const lightMaxDefault = 1000
+    const lightMinDefault = 0
     const wateringTimeDefault = 2
+    const pictureFrequencyDefault = 2
 
     // Gap between data
     const moisGap = 10
     const tempGap = 10
-    const lightGap = 2
+    const lightGap = 300
 
     // Btn
     const updateBtn = document.getElementById("update-btn")
@@ -27,6 +28,7 @@ $(window).on('load', () => {
     document.getElementById("lightMin").value = lightMin;
     document.getElementById("lightMax").value = lightMax;
     document.getElementById("wateringTime").value = wateringTime;
+    document.getElementById("pictureFrequency").value = pictureFrequency;
     console.log("success");
     // alter Place holder
     const alertPlaceholder = document.getElementById('dataAlertPlaceholder')
@@ -57,8 +59,10 @@ $(window).on('load', () => {
       }
       if(dataType != 'Watering Time'){
         alert('The minimum gap between Max and Min in ' + dataType +' should be greater than ' + gap, 'danger')
+        return 0
       }else{
         alert('The watering time should between 1-6 minutes', 'danger')
+        return 0
       }
     }
 
@@ -74,37 +78,44 @@ $(window).on('load', () => {
         ].join('')
         alertPlaceholder.append(info)
       }
-      if (dataType = 'moisMax'){
-        if(data > 90){
+      if (dataType == 'moisMax'){
+        if(data > 100){
           alert('Max number of moisture should be less than 90', 'danger')
           document.getElementById("moisMax").value = moisMaxDefault
+          return 0
         }
-      }else if(dataType = 'moisMin'){
+      }else if(dataType == 'moisMin'){
         if(data < 10){
           alert('Min number of moisture should be graeter than 10', 'danger')
           document.getElementById("moisMin").value = moisMinDefault
+          return 0
         }
-      }else if(dataType = 'tempMax'){
+      }else if(dataType == 'tempMax'){
         if(data > 50){
           alert('Max number of temperature should be less than 50', 'danger')
           document.getElementById("tempMax").value = tempMaxDefault
+          return 0
         }
-      }else if(dataType = 'tempMin'){
+      }else if(dataType == 'tempMin'){
         if(data < -10){
           alert('Min number of temperature  should be graeter than -10', 'danger')
           document.getElementById("tempMin").value = tempMinDefault
+          return 0
         }
-      }else if(dataType = 'lightMax'){
-        if(data > 50){
+      }else if(dataType == 'lightMax'){
+        if(data > 10000){
           alert('Max number of moisture should be less than 20', 'danger')
           document.getElementById("lightMax").value = lightMaxDefault
+          return 0
         }
-      }else if(dataType = 'lightMin'){
+      }else if(dataType == 'lightMin'){
         if(data < 0){
           alert('Min number of moisture should be graeter than 0', 'danger')
           document.getElementById("lightMin").value = lightMinDefault
+          return 0
         }
       }
+      return 1
     }
     // Clicked update btn
     updateBtn.addEventListener('click', () => {
@@ -115,39 +126,46 @@ $(window).on('load', () => {
       var lightMax = document.getElementById("lightMax").value
       var lightMin = document.getElementById("lightMin").value
       var wateringTime = document.getElementById("wateringTime").value
+      var pictureFrequency = document.getElementById("pictureFrequency").value
 
-      dataRangeCheck("moisMax",moisMax)
-      dataRangeCheck("moisMin",moisMin)
-      dataRangeCheck("tempMax",tempMax)
-      dataRangeCheck("tempMin",tempMin)
-      dataRangeCheck("lightMax",lightMax)
-      dataRangeCheck("lightMin",lightMin)
+      var Rangecheck = 0
+      Rangecheck +=  dataRangeCheck("moisMax",moisMax)
+      Rangecheck +=  dataRangeCheck("moisMin",moisMin)
+      Rangecheck +=  dataRangeCheck("tempMax",tempMax)
+      Rangecheck +=  dataRangeCheck("tempMin",tempMin)
+      Rangecheck +=  dataRangeCheck("lightMax",lightMax)
+      Rangecheck +=  dataRangeCheck("lightMin",lightMin)
 
+      var Gapcheck = 0
       if(moisMax - moisMin < moisGap){
-        dataGapCheck('Moisture', moisGap)
+        Gapcheck += dataGapCheck('Moisture', moisGap)
       }else if(tempMax - tempMin < tempGap){
-        dataGapCheck('Temperature', tempGap)
+        Gapcheck += dataGapCheck('Temperature', tempGap)
       }else if(lightMax - lightMin < lightGap){
-        dataGapCheck('Light', lightGap)
+        Gapcheck += dataGapCheck('Light', lightGap)
       }else if(wateringTime > 6 | wateringTime < 1){
-        dataGapCheck('Watering Time')
+        Gapcheck += dataGapCheck('Watering Time')
       }
-      
-      $.ajax({
-        url: "/Setting",
-        type: "POST",
-        data: JSON.stringify({ id:1, moisMin: moisMin, moisMax: moisMax, tempMin:tempMin, 
-          tempMax:tempMax, lightMin:lightMin, lightMax:lightMax, wateringTime:wateringTime}),
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function (data) {
-          console.log(data);
-        },
-      });
+      console.log(Gapcheck)
+      console.log(Rangecheck)
+
+      if (Gapcheck == 0 && Rangecheck==6){
+        $.ajax({
+          url: "/Setting",
+          type: "POST",
+          data: JSON.stringify({ id:1, moisMin: moisMin, moisMax: moisMax, tempMin:tempMin, 
+            tempMax: tempMax, lightMin: lightMin, lightMax: lightMax, wateringTime: wateringTime, pictureFrequency: pictureFrequency}),
+          contentType: "application/json; charset=utf-8",
+          dataType: "json",
+          success: function (data) {
+            console.log(data);
+          },
+        });
       alert("Seting updated succefully",'success')
+      }
     })
 
-    // Clicked update btn
+    // Clicked Reset btn
     resetBtn.addEventListener('click', () => {
 
       document.getElementById("moisMax").value = moisMaxDefault
@@ -157,11 +175,13 @@ $(window).on('load', () => {
       document.getElementById("lightMax").value = lightMaxDefault
       document.getElementById("lightMin").value = lightMinDefault
       document.getElementById("wateringTime").value = wateringTimeDefault
+      document.getElementById("pictureFrequency").value = pictureFrequencyDefault
+
 
       $.ajax({
         url: "/Setting",
         type: "POST",
-        data: JSON.stringify({ id:1, moisMin: moisMinDefault, moisMax: moisMaxDefault, tempMin:tempMinDefault, tempMax:tempMaxDefault, lightMin:lightMinDefault, lightMax:lightMaxDefault, wateringTime:wateringTimeDefault}),
+        data: JSON.stringify({ id:1, moisMin: moisMinDefault, moisMax: moisMaxDefault, tempMin:tempMinDefault, tempMax:tempMaxDefault, lightMin:lightMinDefault, lightMax:lightMaxDefault, wateringTime:wateringTimeDefault, pictureFrequency:pictureFrequencyDefault}),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {

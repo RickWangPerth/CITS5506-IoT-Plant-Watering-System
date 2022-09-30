@@ -8,7 +8,8 @@
     var lightMin = {{ data.lightMin }}
     var lightMax = {{ data.lightMax }}
     var wateringTime = {{ data.wateringTime }}
-    console.log(moisMin)
+    var pictureFrequency = {{ data.pictureFrequency }}
+
 </script>
 <script src="{{ url_for('static', filename='js/advance.js') }}"></script>
 {% endblock %} 
@@ -55,10 +56,15 @@
             </form>
         </div>
         <div class="col-md-3 col-sm-6">
-            <h5> Once watering time (mins)</h5>
+            <h5> Watering & Picture setting</h5>
             <form class="form-floating">
                 <input type="number" class="form-control" id="wateringTime" step="1">
-                <label for="wateringTime">Watering Time</label>
+                <label for="wateringTime">Watering Time (min)</label>
+            </form>
+            <div class="pt-2"></div>
+            <form class="form-floating">
+                <input type="number" class="form-control" id="pictureFrequency" step="1">
+                <label for="pictureFrequency">Picture Frequency (hr)</label>
             </form>
         </div>
         <div class="container pt-5">

@@ -20,8 +20,8 @@ def start_camera():
                 moisMax = 70,
                 tempMin  = 5,
                 tempMax = 35,
-                lightMax = 5,
-                lightMin = 2,
+                lightMax = 1000,
+                lightMin = 0,
                 wateringTime = 2,
                 pictureFrequency = 2)
             db.session.add(setting)
@@ -69,7 +69,7 @@ def advance():
     if setting is None:
         return render_template('advance.html', data={'moisMin': 20, \
         'moisMax': 70, 'tempMin': 5, 'tempMax': 35, \
-        'lightMax': 5, 'lightMin':2, 'wateringTime': 2,'pictureFrequency': 2}, Title="Default Settings")
+        'lightMax': 1000, 'lightMin':5, 'wateringTime': 2,'pictureFrequency': 2}, Title="Default Settings")
 
     return render_template('advance.html', data={'moisMin': setting.moisMin, \
     'moisMax': setting.moisMax, 'tempMin': setting.tempMin, 'tempMax': setting.tempMax, \
@@ -97,8 +97,8 @@ def store_Setting():
         moisMax = 70,
         tempMin  = 5,
         tempMax = 35,
-        lightMax = 5,
-        lightMin = 2,
+        lightMax = 1000,
+        lightMin = 0,
         wateringTime = 2,
         pictureFrequency = 2)
         db.session.add(setting)

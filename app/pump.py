@@ -1,8 +1,8 @@
 from gpiozero import LED
 
 class Pump:
-    def __init__(self):
-        self.led = LED(15)
+    def __init__(self, pin):
+        self.led = LED(pin)
         return
 
     def on(self):
@@ -12,7 +12,7 @@ class Pump:
         self.led.off()
 
 if __name__ == "__main__":
-    p = Pump()
+    p = Pump(15)
     while True:
         p.off()
         input("Press enter to toggle")

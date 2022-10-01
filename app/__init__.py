@@ -5,6 +5,7 @@ from flask_migrate import Migrate
 import time
 from apscheduler.schedulers.background import BackgroundScheduler
 from sys import platform
+from app.pump import Pump
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = '550555055505'
@@ -22,6 +23,8 @@ if platform == "linux":
     scheduler = BackgroundScheduler()
     scheduler.add_job(func=collect_sensors.update_database, trigger="interval", seconds=3)
     scheduler.start()
+
+    pump = Pump(15)
 
     def shutdown():
         print("Stopping...")

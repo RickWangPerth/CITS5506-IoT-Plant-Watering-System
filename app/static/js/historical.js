@@ -1,7 +1,8 @@
 'use strict'
+//moisData = [25,21,23,2,12,22,33,11,23]
 $(window).on('load', () => {
     const margin = 10;
-    const width = 500 - 2 * margin;
+    const width = screen.width/2 - 2 * margin;
     const height = 150 - 2 * margin;
     var barPadding = 3;
 

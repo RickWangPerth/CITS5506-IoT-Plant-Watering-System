@@ -59,11 +59,12 @@ $(window).on('load', () => {
       }
       if(dataType != 'Watering Time'){
         alert('The minimum gap between Max and Min in ' + dataType +' should be greater than ' + gap, 'danger')
-        return 0
+        
       }else{
         alert('The watering time should between 1-6 minutes', 'danger')
-        return 0
+        
       }
+      
     }
 
     // Data Range Check
@@ -138,18 +139,22 @@ $(window).on('load', () => {
 
       var Gapcheck = 0
       if(moisMax - moisMin < moisGap){
-        Gapcheck += dataGapCheck('Moisture', moisGap)
+        dataGapCheck('Moisture', moisGap)
+        Gapcheck += 1
       }else if(tempMax - tempMin < tempGap){
-        Gapcheck += dataGapCheck('Temperature', tempGap)
+        dataGapCheck('Temperature', tempGap)
+        Gapcheck += 1
       }else if(lightMax - lightMin < lightGap){
-        Gapcheck += dataGapCheck('Light', lightGap)
+        dataGapCheck('Light', lightGap)
+        Gapcheck += 1
       }else if(wateringTime > 6 | wateringTime < 1){
-        Gapcheck += dataGapCheck('Watering Time')
+        dataGapCheck('Watering Time')
+        Gapcheck += 1
       }
       console.log(Gapcheck)
       console.log(Rangecheck)
 
-      if (Gapcheck == 0 && Rangecheck==6){
+      if (Gapcheck == 0 && Rangecheck == 6){
         $.ajax({
           url: "/Setting",
           type: "POST",

@@ -5,7 +5,14 @@
     var temperature = {{ data.temperature }}
     var sensLight = {{ data.light }}
     var lastUpdated = {{ data.updateTime }}
-    
+    var moisMin = {{ data.moisMin }}
+    var moisMax = {{ data.moisMax }}
+    var tempMax = {{ data.tempMax }}
+    var tempMin = {{ data.tempMin }}
+    var lightMin = {{ data.lightMin }}
+    var lightMax = {{ data.lightMax }}
+    var wateringTime = {{ data.wateringTime }}
+    var pictureFrequency = {{ data.pictureFrequency }}
 </script>
 
 <script src="{{ url_for('static', filename='js/index.js') }}"></script>

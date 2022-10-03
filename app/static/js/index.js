@@ -17,24 +17,24 @@ $(window).on('load', () => {
     const sad = "../static/images/emoji/sad.gif"
     const emoji = document.getElementById('emoji')
 
-     //Moisture
-     const highMois = 60
-     const lowMois = 20
-     const mois = moisture
-     //const mois = 30
-     if (mois !== null) { // moisture will be null if there are no moisture values to check
+    //Moisture
+    const highMois = moisMax
+    const lowMois = moisMin
+    const mois = moisture
+    //  const mois = 30
+    if (mois !== null) { // moisture will be null if there are no moisture values to check
         document.getElementById('mois-value').innerHTML = Math.round(mois) + "%";
-     } else {
+    } else {
         document.getElementById('mois-value').innerHTML = "N/A";
-     }
+    }
  
-     const tooMois = mois>highMois
-     const goodMois = mois<highMois & mois>lowMois
-     const lessMois = mois<lowMois 
+    const tooMois = mois>highMois
+    const goodMois = mois<highMois & mois>lowMois
+    const lessMois = mois<lowMois 
 
     //Temperature
-    const highTemp = 35
-    const lowTemp = 5
+    const highTemp = tempMax
+    const lowTemp = tempMin
     const temp = temperature
     //const temp = 26
     if (temp !== null) {
@@ -48,8 +48,8 @@ $(window).on('load', () => {
     const tooCold = temp<lowTemp
    
     //Light
-    const highLight = 350
-    const lowLight = 20
+    const highLight = lightMax
+    const lowLight = lightMin
     const light = sensLight
     //const light = 700
     if (light !== null) {
@@ -58,7 +58,11 @@ $(window).on('load', () => {
         document.getElementById('light-value').innerHTML  = "N/A";
     }
 
-    //Watering
+    const tooBright = light>highLight
+    const goodLight = light<highLight & temp>lowLight
+    const tooDark = light<lowLight
+
+    // Watering
     const wateringButton = document.getElementById('watering-btn')
 
     // Water level
@@ -125,6 +129,16 @@ $(window).on('load', () => {
         emoji.src=sad
         alarm.style.display = "block"
         alarm.innerHTML = "Lack of water! Please give me some water"
+    }
+    else if(tooDark){
+        emoji.src=sad
+        alarm.style.display = "block"
+        alarm.innerHTML = "Too Dark! Please move me to a brighter place"
+    }
+    else if(tooBright){
+        emoji.src=sad
+        alarm.style.display = "block"
+        alarm.innerHTML = "Too bright! I cannot open my eyes"
     }
     else{
         emoji.src=happy

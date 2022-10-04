@@ -8,8 +8,8 @@ $(window).on('load', () => {
     const tempMinDefault = 5
     const lightMaxDefault = 1000
     const lightMinDefault = 0
-    const wateringTimeDefault = 2
-    const pictureFrequencyDefault = 2
+    const wateringTimeDefault = 60
+    const pictureFrequencyDefault = 60
 
     // Gap between data
     const moisGap = 10
@@ -57,12 +57,12 @@ $(window).on('load', () => {
         ].join('')
         alertPlaceholder.append(info)
       }
-      if(dataType != 'Watering Time'){
-        alert('The minimum gap between Max and Min in ' + dataType +' should be greater than ' + gap, 'danger')
-        
+      if(dataType == 'Watering Time'){
+        alert('The watering time should between 10-60 secounds', 'danger')
+      }if(dataType == 'pictureFrequency'){
+        alert('The minimum picture frequency should greater than 15 mintue to save resource', 'danger')
       }else{
-        alert('The watering time should between 1-6 minutes', 'danger')
-        
+        alert('The minimum gap between Max and Min in ' + dataType +' should be greater than ' + gap, 'danger')
       }
       
     }
@@ -147,8 +147,11 @@ $(window).on('load', () => {
       }else if(lightMax - lightMin < lightGap){
         dataGapCheck('Light', lightGap)
         Gapcheck += 1
-      }else if(wateringTime > 6 | wateringTime < 1){
+      }else if(wateringTime > 60 | wateringTime < 10){
         dataGapCheck('Watering Time')
+        Gapcheck += 1
+      }else if(pictureFrequency < 15){
+        dataGapCheck('pictureFrequency')
         Gapcheck += 1
       }
       console.log(Gapcheck)
@@ -181,7 +184,6 @@ $(window).on('load', () => {
       document.getElementById("lightMin").value = lightMinDefault
       document.getElementById("wateringTime").value = wateringTimeDefault
       document.getElementById("pictureFrequency").value = pictureFrequencyDefault
-
 
       $.ajax({
         url: "/Setting",

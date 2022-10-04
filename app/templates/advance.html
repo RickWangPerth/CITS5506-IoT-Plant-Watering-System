@@ -45,12 +45,12 @@
         <div class="col-md-3 col-sm-6">
             <h5> Light range (Lux)</h5>
             <form class="form-floating">
-                <input type="number" class="form-control" id="lightMax" step="1" min="5" max="10">
+                <input type="number" class="form-control" id="lightMax" step="100" min="800" max="3000">
                 <label for="lightMax">Max</label>
             </form>
             <div class="pt-2"></div>
             <form class="form-floating">
-                <input type="number" class="form-control" id="lightMin" step="1" min="1" max="6">
+                <input type="number" class="form-control" id="lightMin" step="100" min="0" max="1000">
                 <label for="lightMin">Min</label>
             </form>
         </div>
@@ -58,12 +58,12 @@
             <h5> Watering & Picture setting</h5>
             <form class="form-floating">
                 <input type="number" class="form-control" id="wateringTime" step="1">
-                <label for="wateringTime">Watering Time (min)</label>
+                <label for="wateringTime">Watering Time (sec)</label>
             </form>
             <div class="pt-2"></div>
             <form class="form-floating">
                 <input type="number" class="form-control" id="pictureFrequency" step="1">
-                <label for="pictureFrequency">Picture Frequency (hr)</label>
+                <label for="pictureFrequency">Picture Frequency (min)</label>
             </form>
         </div>
         <div class="container pt-2">

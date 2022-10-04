@@ -44,12 +44,12 @@ def index():
         return render_template("index.html", data={'moisture': "null", 'temperature': "null", \
         'light': "null", 'updateTime': "null", 'moisMin': 20, \
         'moisMax': 50, 'tempMin': 5, 'tempMax': 35, \
-        'lightMax': 1000, 'lightMin':5, 'wateringTime': 2,'pictureFrequency': 2}, title="Dashboard")
+        'lightMax': 1000, 'lightMin':5, 'wateringTime': 60,'pictureFrequency': 60}, title="Dashboard")
     if history is not None and setting is None:
         return render_template("index.html", data={'moisture': history.moisture, 'temperature': history.temperature, \
         'light': history.light, 'updateTime': history.timestamp.timestamp(),'moisMin': 20, \
         'moisMax': 50, 'tempMin': 5, 'tempMax': 35, \
-        'lightMax': 1000, 'lightMin':5, 'wateringTime': 2,'pictureFrequency': 2}, title="Dashboard")
+        'lightMax': 1000, 'lightMin':5, 'wateringTime': 60,'pictureFrequency': 60}, title="Dashboard")
     if history is None and setting is not None:
         return render_template("index.html", data={'moisture': "null", 'temperature': "null", \
         'light': "null", 'updateTime': "null",'moisMin': setting.moisMin, \
@@ -83,7 +83,7 @@ def advance():
     if setting is None:
         return render_template('advance.html', data={'moisMin': 20, \
         'moisMax': 50, 'tempMin': 5, 'tempMax': 35, \
-        'lightMax': 1000, 'lightMin':5, 'wateringTime': 2,'pictureFrequency': 2}, Title="Default Settings")
+        'lightMax': 1000, 'lightMin':5, 'wateringTime': 60,'pictureFrequency': 60}, Title="Default Settings")
 
     return render_template('advance.html', data={'moisMin': setting.moisMin, \
     'moisMax': setting.moisMax, 'tempMin': setting.tempMin, 'tempMax': setting.tempMax, \
@@ -113,8 +113,8 @@ def store_Setting():
         tempMax = 35,
         lightMax = 1000,
         lightMin = 0,
-        wateringTime = 2,
-        pictureFrequency = 2)
+        wateringTime = 60,
+        pictureFrequency = 60)
         db.session.add(setting)
         db.session.commit()
     else:

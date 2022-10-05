@@ -60,7 +60,6 @@ $(window).on('load', () => {
     const wateringButton = document.getElementById('watering-btn')
 
     // Water level
-    const waterLevelvalue = 1 // TODO
     const full = "../static/images/waterlevel/full.png"
     const empty = "../static/images/waterlevel/empyt.png"
     const waterLevel = document.getElementById('waterLevel')

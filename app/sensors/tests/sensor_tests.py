@@ -31,7 +31,7 @@ def main():
     # measured on the Expander Pi Vref pin.
     adc.set_adc_refvoltage(4.096)
     
-    WATER_LEVEL_PIN = 1
+    WATER_LEVEL_PIN = 3
     io = ExpanderPi.IO()
     io.set_pin_direction(WATER_LEVEL_PIN, 1)  # Set port 1, INPUT
     

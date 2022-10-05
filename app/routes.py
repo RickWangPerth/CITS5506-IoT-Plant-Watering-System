@@ -41,13 +41,13 @@ def index():
     history = History.query.order_by(History.timestamp.desc()).first()
     if history is None:
         return render_template("index.html", data={'moisture': "null", 'temperature': "null", \
-        'light': "null", 'updateTime': "null"}, title="Dashboard")
+        'light': "null", 'updateTime': "null", 'waterLevel': True}, title="Dashboard")
     
     moisture = history.moisture
     temperature = history.temperature
     light = history.light
     return render_template("index.html", data={'moisture': moisture, 'temperature': temperature, \
-    'light': light, 'updateTime': history.timestamp.timestamp()}, title="Dashboard")
+    'light': light, 'updateTime': history.timestamp.timestamp(), 'waterLevel': int(history.waterLevel)}, title="Dashboard")
 
 @app.route('/historical/')
 def historical():

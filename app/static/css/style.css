@@ -1,20 +1,56 @@
 body{
     font-family: Inter, sans-serif;
     background-color: darkseagreen;
+
 }
 .navbar{
-    background-color: skyblue;
+    background-color: #87ceeb;
+     /* skyblue; */
+}
+
+.nav-item {
+    height: 100%;
+}
+
+#update-header {
+    margin-top: 10px;
+    font-style: italic;
+}
+
+.navbar-brand {
+    font-weight: bolder;
+}
+
+.active {
+    color: black;
+    font-weight: bolder;
 }
 .sys{
     text-align:center;
     align-self:center;
 }
 .alarm{
-    color: black;
-    background-color: palevioletred;
+    color: white;
+    /* font-weight: bold; */
+    background-color: #C20114;
+    border-bottom: 1px solid lightgray;
     text-align: center;
     vertical-align: middle;
     padding: 10px 5px;
+}
+
+@media (min-width: 900px){
+    .dashboard-metrics {
+        width: 50vw;
+    }
+}
+
+.metric-heading {
+    font-weight: 600;
+}
+
+.metric-box {
+    margin-top: 20px;
 }
 
 .progress{
@@ -187,7 +223,9 @@ body{
 
 footer{
     text-align: center;
-    background-color:  darkseagreen;;
+    margin-top: 20px;
+    border-top: 1px solid rgba(211, 211, 211, 0.651);
+    padding-top: 15px;
 }
 
 #photo {

@@ -22,16 +22,19 @@
     <!-- Alarm Text -->
     <div class="alarm" id="alarm" style="display:none;"></div>
     <div class="alarm" id="waterAlarm" style="display:none;"></div>
+    
     <!-- Update Time-->
-    <div class="col-md-12 col-sm-6 sys">Data last updated at <span id="updateTime">(None)</span></div>
+    <div class="col-md-12 col-sm-6 sys" id="update-header">Data last updated at <span id="updateTime">(None)</span></div>
+    
     <!-- Alert-->
     <div id="wateringAlertPlaceholder"></div>
-    <!--Darshboard-->
-    <!-- Soil moisture -->
-    <div class="container pt-3">
+    
+    <!--Dashboard-->
+    <div class="container pt-3 dashboard-metrics">
         <div class="row">
-            <div class="col-md-2 col-sm-4 sys">
-                <div class="pt-2" id="mois"> Soil moisture </div>
+            <!-- Moisture sensor -->
+            <div class="col-md-4 col-sm-4 sys metric-box">
+                <div class="pt-2 metric-heading" id="mois"> Soil moisture </div>
                 <div class="pt-2"></div>
                 <div class="progress moisbar pt-3">
                     <span class="progress-left">
@@ -46,8 +49,8 @@
                 </div>
             </div>
             <!-- Temperature -->
-            <div class="col-md-2 col-sm-4 sys">
-                <div class="pt-2" id="temp"> Temperature </div>
+            <div class="col-md-4 col-sm-4 sys metric-box">
+                <div class="pt-2 metric-heading" id="temp"> Temperature </div>
                 <div class="pt-2"></div>
                 <div class="progress tempbar pt-3">
                     <span class="progress-left">
@@ -62,8 +65,8 @@
                 </div>
             </div>
             <!-- Light -->
-            <div class="col-md-2 col-sm-4 sys">
-                <div class="pt-2" id="light"> Light </div>
+            <div class="col-md-4 col-sm-4 sys metric-box">
+                <div class="pt-2 metric-heading" id="light"> Light </div>
                 <div class="pt-2"></div>
                 <div class="progress lightbar pt-3">
                     <span class="progress-left">
@@ -77,15 +80,17 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row">
             <!-- Water Level -->
-            <div class="col-md-2 col-sm-4 sys">
-                <div class="pt-2" id="light"> Water level </div>
+            <div class="col-md-6 col-sm-6 sys metric-box">
+                <div class="pt-2 metric-heading" id="light"> Water level </div>
                 <div class="pt-2"></div>
                 <img src="../static/images/waterlevel/full.png" width="160px" alt="waterlevel" id="waterLevel"/>
             </div>
             <!--Emoji-->
-            <div class="col-md-4 col-sm-4 sys">
-                <div class="pt-2" id="light"> Status </div>
+            <div class="col-md-6 col-sm-6 sys metric-box">
+                <div class="pt-2 metric-heading" id="light"> Status </div>
                 <div class="pt-2"></div>
                 <img src="../static/images/emoji/cold.gif" width="150px" alt="emoji" id="emoji"/>
             </div>

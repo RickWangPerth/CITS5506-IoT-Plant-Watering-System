@@ -12,6 +12,8 @@ $(window).on('load', () => {
     var width = window.outerWidth / 2 - 2 * margin;
     if (window.outerWidth > 1800)
         width = 700 - 2 * margin;
+    if (window.outerWidth < 400)
+        width = window.outerWidth - 2*margin;
     console.log(window.outerWidth)
     var height = 180 - 2 * margin;
     var barPadding = 3;

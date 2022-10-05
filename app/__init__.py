@@ -5,7 +5,7 @@ from flask_migrate import Migrate
 import time
 from apscheduler.schedulers.background import BackgroundScheduler
 from sys import platform
-from app.pump import Pump
+
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = '550555055505'
@@ -17,6 +17,7 @@ migrate = Migrate(app, db)
 if platform == "linux":
     from app.sensors.collect_sensors import CollectSensors
     import atexit
+    from app.pump import Pump
 
     collect_sensors = CollectSensors(db)
 

@@ -9,7 +9,6 @@
     var lightMax = {{ data.lightMax }}
     var wateringTime = {{ data.wateringTime }}
     var pictureFrequency = {{ data.pictureFrequency }}
-
 </script>
 <script src="{{ url_for('static', filename='js/advance.js') }}"></script>
 {% endblock %} 
@@ -20,7 +19,7 @@
 <div class="container pt-5">
     <div class="row">
         <div class="col-md-3 col-sm-6">
-            <h5> Soild moisture range(%) </h5>
+            <h5> Soil moisture range(%) </h5>
             <form class="form-floating">
                 <input type="number" class="form-control" id="moisMax" step="5" min="30" max="80">
                 <label for="moisMax">Max</label>
@@ -44,14 +43,14 @@
             </form>
         </div>
         <div class="col-md-3 col-sm-6">
-            <h5> Light range </h5>
+            <h5> Light range (Lux)</h5>
             <form class="form-floating">
-                <input type="number" class="form-control" id="lightMax" step="1" min="5" max="10">
+                <input type="number" class="form-control" id="lightMax" step="100" min="800" max="3000">
                 <label for="lightMax">Max</label>
             </form>
             <div class="pt-2"></div>
             <form class="form-floating">
-                <input type="number" class="form-control" id="lightMin" step="1" min="1" max="6">
+                <input type="number" class="form-control" id="lightMin" step="100" min="0" max="1000">
                 <label for="lightMin">Min</label>
             </form>
         </div>
@@ -59,20 +58,20 @@
             <h5> Watering & Picture setting</h5>
             <form class="form-floating">
                 <input type="number" class="form-control" id="wateringTime" step="1">
-                <label for="wateringTime">Watering Time (min)</label>
+                <label for="wateringTime">Watering Time (sec)</label>
             </form>
             <div class="pt-2"></div>
             <form class="form-floating">
                 <input type="number" class="form-control" id="pictureFrequency" step="1">
-                <label for="pictureFrequency">Picture Frequency (hr)</label>
+                <label for="pictureFrequency">Picture Frequency (min)</label>
             </form>
         </div>
-        <div class="container pt-5">
+        <div class="container pt-2">
             <div class="row">
-                <div class="col-md-6 sys">
+                <div class="col-md-6 sys pt-3">
                     <button type="button" class="btn btn-success" id="update-btn">Update Setting</button>
                 </div>
-                <div class="col-md-6 sys">
+                <div class="col-md-6 sys pt-3">
                     <button type="button" class="btn btn-info" id="reset-btn">Reset to defaults</button>
                 </div>
             </div>

@@ -8,8 +8,8 @@ $(window).on('load', () => {
     const tempMinDefault = 5
     const lightMaxDefault = 1000
     const lightMinDefault = 0
-    const wateringTimeDefault = 2
-    const pictureFrequencyDefault = 2
+    const wateringTimeDefault = 60
+    const pictureFrequencyDefault = 60
 
     // Gap between data
     const moisGap = 10
@@ -57,13 +57,14 @@ $(window).on('load', () => {
         ].join('')
         alertPlaceholder.append(info)
       }
-      if(dataType != 'Watering Time'){
-        alert('The minimum gap between Max and Min in ' + dataType +' should be greater than ' + gap, 'danger')
-        return 0
+      if(dataType == 'Watering Time'){
+        alert('The watering time should between 10-60 secounds', 'danger')
+      }if(dataType == 'pictureFrequency'){
+        alert('The minimum picture frequency should greater than 15 mintue to save resource', 'danger')
       }else{
-        alert('The watering time should between 1-6 minutes', 'danger')
-        return 0
+        alert('The minimum gap between Max and Min in ' + dataType +' should be greater than ' + gap, 'danger')
       }
+      
     }
 
     // Data Range Check
@@ -138,18 +139,25 @@ $(window).on('load', () => {
 
       var Gapcheck = 0
       if(moisMax - moisMin < moisGap){
-        Gapcheck += dataGapCheck('Moisture', moisGap)
+        dataGapCheck('Moisture', moisGap)
+        Gapcheck += 1
       }else if(tempMax - tempMin < tempGap){
-        Gapcheck += dataGapCheck('Temperature', tempGap)
+        dataGapCheck('Temperature', tempGap)
+        Gapcheck += 1
       }else if(lightMax - lightMin < lightGap){
-        Gapcheck += dataGapCheck('Light', lightGap)
-      }else if(wateringTime > 6 | wateringTime < 1){
-        Gapcheck += dataGapCheck('Watering Time')
+        dataGapCheck('Light', lightGap)
+        Gapcheck += 1
+      }else if(wateringTime > 60 | wateringTime < 10){
+        dataGapCheck('Watering Time')
+        Gapcheck += 1
+      }else if(pictureFrequency < 15){
+        dataGapCheck('pictureFrequency')
+        Gapcheck += 1
       }
       console.log(Gapcheck)
       console.log(Rangecheck)
 
-      if (Gapcheck == 0 && Rangecheck==6){
+      if (Gapcheck == 0 && Rangecheck == 6){
         $.ajax({
           url: "/Setting",
           type: "POST",
@@ -176,7 +184,6 @@ $(window).on('load', () => {
       document.getElementById("lightMin").value = lightMinDefault
       document.getElementById("wateringTime").value = wateringTimeDefault
       document.getElementById("pictureFrequency").value = pictureFrequencyDefault
-
 
       $.ajax({
         url: "/Setting",

@@ -30,86 +30,90 @@
     <div id="wateringAlertPlaceholder"></div>
     
     <!--Dashboard-->
-    <div class="container pt-3 dashboard-metrics">
-        <div class="row">
-            <!-- Moisture sensor -->
-            <div class="col-md-4 col-sm-4 sys metric-box">
-                <div class="pt-2 metric-heading" id="mois"> Soil moisture </div>
-                <div class="pt-2"></div>
-                <div class="progress moisbar pt-3">
-                    <span class="progress-left">
-                        <span class="progress-bar"></span>
-                    </span>
-                    <span class="progress-right">
-                        <span class="progress-bar"></span>
-                    </span>
-                    <div class="progress-value" >
-                        <span id="mois-value"></span>
+    <div class="container dashboard-metrics">
+        <div class="container pt-3">
+            <div class="row">
+                <!-- Moisture sensor -->
+                <div class="col-md-4 col-sm-4 sys metric-box">
+                    <div class="pt-2 metric-heading" id="mois"> Soil moisture </div>
+                    <div class="pt-2"></div>
+                    <div class="progress moisbar pt-3">
+                        <span class="progress-left">
+                            <span class="progress-bar"></span>
+                        </span>
+                        <span class="progress-right">
+                            <span class="progress-bar"></span>
+                        </span>
+                        <div class="progress-value" >
+                            <span id="mois-value"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Temperature -->
+                <div class="col-md-4 col-sm-4 sys metric-box">
+                    <div class="pt-2 metric-heading" id="temp"> Temperature </div>
+                    <div class="pt-2"></div>
+                    <div class="progress tempbar pt-3">
+                        <span class="progress-left">
+                            <span class="progress-bar"></span>
+                        </span>
+                        <span class="progress-right">
+                            <span class="progress-bar"></span>
+                        </span>
+                        <div class="progress-value">
+                            <sapn id="temp-value"></sapn>
+                        </div>
+                    </div>
+                </div>
+                <!-- Light -->
+                <div class="col-md-4 col-sm-4 sys metric-box">
+                    <div class="pt-2 metric-heading" id="light"> Light </div>
+                    <div class="pt-2"></div>
+                    <div class="progress lightbar pt-3">
+                        <span class="progress-left">
+                            <span class="progress-bar"></span>
+                        </span>
+                        <span class="progress-right">
+                            <span class="progress-bar"></span>
+                        </span>
+                        <div class="progress-value">
+                            <sapn id="light-value"></sapn><span></span>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- Temperature -->
-            <div class="col-md-4 col-sm-4 sys metric-box">
-                <div class="pt-2 metric-heading" id="temp"> Temperature </div>
-                <div class="pt-2"></div>
-                <div class="progress tempbar pt-3">
-                    <span class="progress-left">
-                        <span class="progress-bar"></span>
-                    </span>
-                    <span class="progress-right">
-                        <span class="progress-bar"></span>
-                    </span>
-                    <div class="progress-value">
-                        <sapn id="temp-value"></sapn>
-                    </div>
+            <div class="row">
+                <!-- Water Level -->
+                <div class="col-md-6 col-sm-6 sys metric-box">
+                    <div class="pt-2 metric-heading" id="light"> Water level </div>
+                    <div class="pt-2"></div>
+                    <img src="../static/images/waterlevel/full.png" width="160px" alt="waterlevel" id="waterLevel"/>
                 </div>
-            </div>
-            <!-- Light -->
-            <div class="col-md-4 col-sm-4 sys metric-box">
-                <div class="pt-2 metric-heading" id="light"> Light </div>
-                <div class="pt-2"></div>
-                <div class="progress lightbar pt-3">
-                    <span class="progress-left">
-                        <span class="progress-bar"></span>
-                    </span>
-                    <span class="progress-right">
-                        <span class="progress-bar"></span>
-                    </span>
-                    <div class="progress-value">
-                        <sapn id="light-value"></sapn><span></span>
-                    </div>
+                <!--Emoji-->
+                <div class="col-md-6 col-sm-6 sys metric-box">
+                    <div class="pt-2 metric-heading" id="light"> Status </div>
+                    <div class="pt-2"></div>
+                    <img src="../static/images/emoji/cold.gif" width="150px" alt="emoji" id="emoji"/>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <!-- Water Level -->
-            <div class="col-md-6 col-sm-6 sys metric-box">
-                <div class="pt-2 metric-heading" id="light"> Water level </div>
-                <div class="pt-2"></div>
-                <img src="../static/images/waterlevel/full.png" width="160px" alt="waterlevel" id="waterLevel"/>
+        <!--Control board-->
+        <div class="container pt-3 button-controls">
+            <div class="row">
+                <!--Watering btn-->
+                <div class="col-md-6 col-sm-6 sys pt-5">
+                    <button type="button" class="btn btn-primary" id="watering-btn">Water your plant now</button>
+                </div>
+                <!--Photo btn-->
+                <div class="col-md-6 col-sm-6 sys pt-5">
+                    <button type="button" class="btn btn-success" id="photo-btn">Take a photo</button>
+                </div>
             </div>
-            <!--Emoji-->
-            <div class="col-md-6 col-sm-6 sys metric-box">
-                <div class="pt-2 metric-heading" id="light"> Status </div>
-                <div class="pt-2"></div>
-                <img src="../static/images/emoji/cold.gif" width="150px" alt="emoji" id="emoji"/>
-            </div>
-        </div>
-    </div>
-    <!--Control board-->
-    <div class="container pt-3">
-        <div class="row">
-            <!--Watering btn-->
-            <div class="col-md-4 col-sm-6 sys pt-5">
-                <button type="button" class="btn btn-primary" id="watering-btn">Water your plant now</button>
-            </div>
-            <!--Photo btn-->
-            <div class="col-md-4 col-sm-6 sys pt-5">
-                <button type="button" class="btn btn-success" id="photo-btn">Take a photo</button>
-            </div>
-            <!--photo display-->
-            <div class="col-md-4 col-sm-6 sys pt-5">
-                <img src="" width="200px" alt="plant-photo" id="photo"/>
+            <div class="row photo-row">
+                <!--photo display-->
+                <div class="col-md-12 col-sm-12 sys pt-5">
+                    <img src="" width="200px" alt="plant-photo" id="photo"/>
+                </div>
             </div>
         </div>
     </div>

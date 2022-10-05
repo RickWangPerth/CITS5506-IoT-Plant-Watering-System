@@ -35,25 +35,28 @@
             <div class="row">
                 <!-- Moisture sensor -->
                 <div class="col-md-4 col-sm-4 sys metric-box">
-                    <div class="pt-2 metric-heading" id="mois"> Soil moisture </div>
+                    <div class="pt-2 metric-heading" id="mois">Soil moisture </div>
                     <div class="pt-2"></div>
-                    <div class="progress moisbar pt-3">
+                    <div class="progress moisbar">
                         <span class="progress-left">
                             <span class="progress-bar"></span>
                         </span>
                         <span class="progress-right">
                             <span class="progress-bar"></span>
                         </span>
+                        
                         <div class="progress-value" >
+                            <span class="bi-moisture"></span>
+                            <br/>
                             <span id="mois-value"></span>
                         </div>
                     </div>
                 </div>
                 <!-- Temperature -->
                 <div class="col-md-4 col-sm-4 sys metric-box">
-                    <div class="pt-2 metric-heading" id="temp"> Temperature </div>
+                    <div class="pt-2 metric-heading" id="temp">Temperature </div>
                     <div class="pt-2"></div>
-                    <div class="progress tempbar pt-3">
+                    <div class="progress tempbar">
                         <span class="progress-left">
                             <span class="progress-bar"></span>
                         </span>
@@ -61,15 +64,17 @@
                             <span class="progress-bar"></span>
                         </span>
                         <div class="progress-value">
-                            <sapn id="temp-value"></sapn>
+                            <span class="bi-thermometer-half"></span>
+                            <br/>
+                            <span id="temp-value"></span>
                         </div>
                     </div>
                 </div>
                 <!-- Light -->
                 <div class="col-md-4 col-sm-4 sys metric-box">
-                    <div class="pt-2 metric-heading" id="light"> Light </div>
+                    <div class="pt-2 metric-heading" id="light">Light</div>
                     <div class="pt-2"></div>
-                    <div class="progress lightbar pt-3">
+                    <div class="progress lightbar">
                         <span class="progress-left">
                             <span class="progress-bar"></span>
                         </span>
@@ -77,7 +82,9 @@
                             <span class="progress-bar"></span>
                         </span>
                         <div class="progress-value">
-                            <sapn id="light-value"></sapn><span></span>
+                            <span class="bi-brightness-high-fill"></span>
+                            <br/>
+                            <span id="light-value"></span>
                         </div>
                     </div>
                 </div>
@@ -85,13 +92,13 @@
             <div class="row">
                 <!-- Water Level -->
                 <div class="col-md-6 col-sm-6 sys metric-box">
-                    <div class="pt-2 metric-heading" id="light"> Water level </div>
+                    <div class="pt-2 metric-heading" id="light">Water level</div>
                     <div class="pt-2"></div>
                     <img src="../static/images/waterlevel/full.png" width="160px" alt="waterlevel" id="waterLevel"/>
                 </div>
                 <!--Emoji-->
                 <div class="col-md-6 col-sm-6 sys metric-box">
-                    <div class="pt-2 metric-heading" id="light"> Status </div>
+                    <div class="pt-2 metric-heading" id="light">Status</div>
                     <div class="pt-2"></div>
                     <img src="../static/images/emoji/cold.gif" width="150px" alt="emoji" id="emoji"/>
                 </div>
@@ -102,11 +109,11 @@
             <div class="row">
                 <!--Watering btn-->
                 <div class="col-md-6 col-sm-6 sys pt-5">
-                    <button type="button" class="btn btn-primary" id="watering-btn">Water your plant now</button>
+                    <button type="button" class="btn btn-primary" id="watering-btn"><span class="bi-droplet-fill"></span>&nbsp;Water your plant now</button>
                 </div>
                 <!--Photo btn-->
                 <div class="col-md-6 col-sm-6 sys pt-5">
-                    <button type="button" class="btn btn-success" id="photo-btn">Take a photo</button>
+                    <button type="button" class="btn btn-success" id="photo-btn"><span class="bi-camera-fill"></span>&nbsp;Take a photo</button>
                 </div>
             </div>
             <div class="row photo-row">

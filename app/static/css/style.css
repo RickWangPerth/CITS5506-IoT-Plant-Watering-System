@@ -8,6 +8,11 @@ body{
      /* skyblue; */
 }
 
+h5 {
+    font-weight: bold;
+    margin-top: 20px;
+}
+
 .nav-item {
     height: 100%;
 }
@@ -59,7 +64,6 @@ body{
     box-shadow: none;
     width: 150px;
     height: 150px;
-    line-height: 150px;
     position: relative;
 }
 .progress:after{
@@ -121,6 +125,16 @@ body{
     width: 100%;
     height: 100%;
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.progress-value > br {
+    content: '\A';
+    display: contents;
+    white-space: pre;
 }
 
 /* @keyframes loading-moisRight{

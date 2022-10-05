@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
     {% block script %} {% endblock %}
     </head>
@@ -33,7 +34,7 @@
                             <a class="nav-link {{ 'active' if request.path == url_for('historical') }}" href="{{ url_for('historical') }}">Historical Data</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ 'active' if request.path == url_for('advance') }}" href="{{ url_for('advance') }}">Advance Setting</a>
+                            <a class="nav-link {{ 'active' if request.path == url_for('advance') }}" href="{{ url_for('advance') }}">Advanced Settings</a>
                         </li>
                     </ul>
                 </div>

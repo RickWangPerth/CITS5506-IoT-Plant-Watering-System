@@ -6,7 +6,6 @@ $(window).on('load', () => {
 
     //Update time
     const updateTimeElement = document.getElementById("updateTime")
-    var d = new Date(0);
 
     //Emoji
     const cold = "../static/images/emoji/cold.gif"
@@ -20,6 +19,7 @@ $(window).on('load', () => {
 
     function render_page() {
         // Update time
+        var d = new Date(0);
         d.setUTCSeconds(lastUpdated);
         updateTimeElement.textContent = d.toLocaleDateString() + " " + d.toLocaleTimeString();
 

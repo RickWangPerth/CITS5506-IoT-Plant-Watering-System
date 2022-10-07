@@ -162,12 +162,13 @@ $(window).on('load', () => {
     } else {
         document.getElementById("lightData").innerHTML = "No data";
     }
-    document.getElementById("TimeStamp0").innerHTML = "No data1";
-    document.getElementById("TimeStamp1").innerHTML = "No data2";
-    document.getElementById("TimeStamp2").innerHTML = "No data3";
-    document.getElementById("Alarm0").innerHTML = "No data4";
-    document.getElementById("Alarm1").innerHTML = "No data5";
-    document.getElementById("Alarm2").innerHTML = "No data6";
 
 
+
+    document.getElementById("TimeStamp0").innerHTML = timeStamp[0];
+    document.getElementById("TimeStamp1").innerHTML = timeStamp[1];
+    document.getElementById("TimeStamp2").innerHTML = timeStamp[2];
+    document.getElementById("Alarm0").innerHTML = moisAlert[0]+tempAlert[0]+lightAlert[0];
+    document.getElementById("Alarm1").innerHTML = moisAlert[1]+tempAlert[1]+lightAlert[1];
+    document.getElementById("Alarm2").innerHTML = moisAlert[2]+tempAlert[2]+lightAlert[2];
 })

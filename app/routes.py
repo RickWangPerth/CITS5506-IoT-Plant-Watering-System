@@ -84,7 +84,7 @@ def historical():
         tempData.append(entry.temperature)
         lightData.append(entry.light)
         ## Modified in 07/10/2022 BY LEON
-        timeStamp.append(entry.timeStamp)
+        timeStamp.append(entry.timestamp.timestamp())
         moisAlert.append(entry.moistureAlert)
         tempAlert.append(entry.temperatureAlert)
         lightAlert.append(entry.lightAlert)

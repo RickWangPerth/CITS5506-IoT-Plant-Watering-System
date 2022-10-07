@@ -1,7 +1,7 @@
 'use strict'
-moisData = [21,20,18,30,40,70,48,46,44]
-tempData = [25,21,23,22,22,22,25,25,23]
-lightData = [70,70,80,100,200,300,150,120,110,110]
+//moisData = [21,20,18,30,40,70,48,46,44]
+//tempData = [25,21,23,22,22,22,25,25,23]
+//lightData = [70,70,80,100,200,300,150,120,110,110]
 
 $(window).on('load', () => {
     const margin = 10;
@@ -164,10 +164,15 @@ $(window).on('load', () => {
     }
 
 
-
-    document.getElementById("TimeStamp0").innerHTML = timeStamp[0];
-    document.getElementById("TimeStamp1").innerHTML = timeStamp[1];
-    document.getElementById("TimeStamp2").innerHTML = timeStamp[2];
+    var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
+    d.setUTCSeconds(timeStamp[timeStamp.length - 1]);
+    document.getElementById("TimeStamp0").innerHTML = d.toLocaleString();//timeStamp[0];
+    d = new Date(0); // The 0 there is the key, which sets the date to t>
+    d.setUTCSeconds(timeStamp[timeStamp.length - 2]);
+    document.getElementById("TimeStamp1").innerHTML = d.toLocaleString();//timeStamp[1];
+    d = new Date(0);
+    d.setUTCSeconds(timeStamp[timeStamp.length - 3]);
+    document.getElementById("TimeStamp2").innerHTML = d.toLocaleString()//timeStamp[2];
     document.getElementById("Alarm0").innerHTML = moisAlert[0]+tempAlert[0]+lightAlert[0];
     document.getElementById("Alarm1").innerHTML = moisAlert[1]+tempAlert[1]+lightAlert[1];
     document.getElementById("Alarm2").innerHTML = moisAlert[2]+tempAlert[2]+lightAlert[2];

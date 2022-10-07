@@ -1,7 +1,7 @@
 'use strict'
-//moisData = [21,20,18,30,40,70,48,46,44]
-//tempData = [25,21,23,22,22,22,25,25,23]
-//lightData = [700,700,800,900,1000,1300,1500,1200,1100,1100]
+moisData = [21,20,18,30,40,70,48,46,44]
+tempData = [25,21,23,22,22,22,25,25,23]
+lightData = [70,70,80,100,200,300,150,120,110,110]
 
 $(window).on('load', () => {
     const margin = 10;
@@ -54,7 +54,7 @@ $(window).on('load', () => {
                 return i * (width / moisData.length) + (width / moisData.length - barPadding) / 2;
             })
             .attr("y", function(d) {
-                return height - (d * 2) + 10;
+                return height - yScale(d) + 15;
             })
             .attr("font-family", "sans-serif")
             .attr("font-size", "11px")
@@ -103,7 +103,7 @@ $(window).on('load', () => {
                 return i * (width / tempData.length) + (width / tempData.length - barPadding) / 2;
             })
             .attr("y", function(d) {
-                return height - (d * 6) + 15;
+                return height - yScale(d) + 18;
             })
             .attr("font-family", "sans-serif")
             .attr("font-size", "11px")
@@ -153,7 +153,7 @@ $(window).on('load', () => {
                 return i * (width / lightData.length) + (width / lightData.length - barPadding) / 2;
             })
             .attr("y", function(d) {
-                return height - (d / 10) + 15;
+                return height - yScale(d) + 15;
             })
             .attr("font-family", "sans-serif")
             .attr("font-size", "11px")
@@ -162,4 +162,12 @@ $(window).on('load', () => {
     } else {
         document.getElementById("lightData").innerHTML = "No data";
     }
+    document.getElementById("TimeStamp0").innerHTML = "No data1";
+    document.getElementById("TimeStamp1").innerHTML = "No data2";
+    document.getElementById("TimeStamp2").innerHTML = "No data3";
+    document.getElementById("Alarm0").innerHTML = "No data4";
+    document.getElementById("Alarm1").innerHTML = "No data5";
+    document.getElementById("Alarm2").innerHTML = "No data6";
+
+
 })

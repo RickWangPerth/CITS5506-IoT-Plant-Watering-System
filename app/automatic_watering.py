@@ -18,5 +18,5 @@ class AutomaticWatering:
         data: History = History.query.order_by(History.timestamp.desc()).first()
         settings: Setting = Setting.query.first()
 
-        if data.moisture < settings.moisMin:
+        if data.waterLevel and data.moisture < settings.moisMin:
             self.water_plant()

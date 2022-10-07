@@ -145,6 +145,6 @@ def take_picture():
 @app.route('/water_plant/', methods=["GET"])
 def water_plant_fixed():
     pump.on()
-    time.sleep(3)
+    time.sleep(0.5)
     pump.off()
     return {'success': True}, 200

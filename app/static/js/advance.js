@@ -2,18 +2,18 @@
 $(window).on('load', () => {
 
     // Default setting
-    const moisMaxDefault = 70
+    const moisMaxDefault = 80
     const moisMinDefault = 20
     const tempMaxDefault = 35
     const tempMinDefault = 5
     const lightMaxDefault = 1000
     const lightMinDefault = 0
-    const wateringTimeDefault = 60
-    const pictureFrequencyDefault = 60
+    const wateringTimeDefault = 500
+    const pictureFrequencyDefault = 15
 
     // Gap between data
     const moisGap = 10
-    const tempGap = 10
+    const tempGap = 5
     const lightGap = 300
 
     // Btn
@@ -58,9 +58,9 @@ $(window).on('load', () => {
         alertPlaceholder.append(info)
       }
       if(dataType == 'Watering Time'){
-        alert('The watering time should between 10-60 secounds', 'danger')
+        alert('The watering time should between 500-3000 millisecounds', 'danger')
       }if(dataType == 'pictureFrequency'){
-        alert('The minimum picture frequency should greater than 15 mintue to save resource', 'danger')
+        alert('The minimum picture frequency should greater than 5 mintue to save resource', 'danger')
       }else{
         alert('The minimum gap between Max and Min in ' + dataType +' should be greater than ' + gap, 'danger')
       }
@@ -147,10 +147,10 @@ $(window).on('load', () => {
       }else if(lightMax - lightMin < lightGap){
         dataGapCheck('Light', lightGap)
         Gapcheck += 1
-      }else if(wateringTime > 60 | wateringTime < 10){
+      }else if(wateringTime > 3000 | wateringTime < 500){
         dataGapCheck('Watering Time')
         Gapcheck += 1
-      }else if(pictureFrequency < 15){
+      }else if(pictureFrequency < 5){
         dataGapCheck('pictureFrequency')
         Gapcheck += 1
       }

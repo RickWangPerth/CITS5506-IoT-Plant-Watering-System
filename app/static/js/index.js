@@ -155,31 +155,31 @@ $(window).on('load', () => {
         const type = ["moisRight","moisLeft","tempRight","tempLeft","lightRight","lightLeft"]
 
         // Mois bar keyframe
-        const moisHalf = 40
+        const moisHalf = 50
         if(mois>moisHalf){
             var degreeRight = 180
             var keyframe = "@keyframes loading-"+type[0]+"{0%{-webkit-transform: rotate(0deg);transform: rotate(0deg);}100%{-webkit-transform: rotate("+ degreeRight +"deg);transform: rotate("+ degreeRight + "deg);}"
             styleSheet.insertRule(keyframe,styleSheet.cssRules.length)
-            var degreeLeft = (mois-moisHalf)/80*360
+            var degreeLeft = (mois-moisHalf)/100*360
             var keyframe = "@keyframes loading-"+type[1]+"{0%{-webkit-transform: rotate(0deg);transform: rotate(0deg);}100%{-webkit-transform: rotate("+ degreeLeft +"deg);transform: rotate("+ degreeLeft + "deg);}"
             styleSheet.insertRule(keyframe,styleSheet.cssRules.length)
         }else{
-            var degreeRight = mois/80*360
+            var degreeRight = mois/100*360
             var keyframe = "@keyframes loading-"+type[0]+"{0%{-webkit-transform: rotate(0deg);transform: rotate(0deg);}100%{-webkit-transform: rotate("+ degreeRight +"deg);transform: rotate("+ degreeRight + "deg);}"
             styleSheet.insertRule(keyframe,styleSheet.cssRules.length)
         }
 
         //Temp bar keyframe
-        const tempHalf = 20
+        const tempHalf = 25
         if(temp>tempHalf){
             var degreeRight = 180
             var keyframe = "@keyframes loading-"+type[2]+"{0%{-webkit-transform: rotate(0deg);transform: rotate(0deg);}100%{-webkit-transform: rotate("+ degreeRight +"deg);transform: rotate("+ degreeRight + "deg);}"
             styleSheet.insertRule(keyframe,styleSheet.cssRules.length)
-            var degreeLeft = (temp-tempHalf)/40*360
+            var degreeLeft = (temp-tempHalf)/50*360
             var keyframe = "@keyframes loading-"+type[3]+"{0%{-webkit-transform: rotate(0deg);transform: rotate(0deg);}100%{-webkit-transform: rotate("+ degreeLeft +"deg);transform: rotate("+ degreeLeft + "deg);}"
             styleSheet.insertRule(keyframe,styleSheet.cssRules.length)
         }else{
-            var degreeRight = temp/40*360
+            var degreeRight = temp/50*360
             var keyframe = "@keyframes loading-"+type[2]+"{0%{-webkit-transform: rotate(0deg);transform: rotate(0deg);}100%{-webkit-transform: rotate("+ degreeRight +"deg);transform: rotate("+ degreeRight + "deg);}"
             styleSheet.insertRule(keyframe,styleSheet.cssRules.length)
         }

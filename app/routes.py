@@ -20,13 +20,13 @@ def start_camera():
             setting = Setting(
                 id = 1,
                 moisMin = 20,
-                moisMax = 50,
+                moisMax = 80,
                 tempMin  = 5,
                 tempMax = 35,
                 lightMax = 1000,
                 lightMin = 0,
-                wateringTime = 2,
-                pictureFrequency = 2)
+                wateringTime = 500,
+                pictureFrequency = 15)
             db.session.add(setting)
             db.session.commit()
 
@@ -44,13 +44,13 @@ def index():
     if history is None and setting is None:
         return render_template("index.html", data={'moisture': "null", 'temperature': "null", \
         'light': "null", 'updateTime': "null", 'waterLevel': "null", 'moisMin': 20, \
-        'moisMax': 50, 'tempMin': 5, 'tempMax': 35, \
-        'lightMax': 1000, 'lightMin':5, 'wateringTime': 60,'pictureFrequency': 60}, title="Dashboard")
+        'moisMax': 80, 'tempMin': 5, 'tempMax': 35, \
+        'lightMax': 1000, 'lightMin':5, 'wateringTime': 500,'pictureFrequency': 15}, title="Dashboard")
     if history is not None and setting is None:
         return render_template("index.html", data={'moisture': history.moisture, 'temperature': history.temperature, \
         'light': history.light, 'updateTime': history.timestamp.timestamp(), 'waterLevel': int(history.waterLevel), 'moisMin': 20, \
-        'moisMax': 50, 'tempMin': 5, 'tempMax': 35, \
-        'lightMax': 1000, 'lightMin':5, 'wateringTime': 60,'pictureFrequency': 60}, title="Dashboard")
+        'moisMax': 80, 'tempMin': 5, 'tempMax': 35, \
+        'lightMax': 1000, 'lightMin':5, 'wateringTime': 500,'pictureFrequency': 15}, title="Dashboard")
     if history is None and setting is not None:
         return render_template("index.html", data={'moisture': "null", 'temperature': "null", \
         'light': "null", 'updateTime': "null", 'waterLevel': "null", 'moisMin': setting.moisMin, \
@@ -84,8 +84,8 @@ def advance():
     setting = Setting.query.first()
     if setting is None:
         return render_template('advance.html', data={'moisMin': 20, \
-        'moisMax': 50, 'tempMin': 5, 'tempMax': 35, \
-        'lightMax': 1000, 'lightMin':5, 'wateringTime': 60,'pictureFrequency': 60}, Title="Default Settings")
+        'moisMax': 80, 'tempMin': 5, 'tempMax': 35, \
+        'lightMax': 1000, 'lightMin':5, 'wateringTime': 500,'pictureFrequency': 15}, Title="Default Settings")
 
     return render_template('advance.html', data={'moisMin': setting.moisMin, \
     'moisMax': setting.moisMax, 'tempMin': setting.tempMin, 'tempMax': setting.tempMax, \
@@ -110,13 +110,13 @@ def store_Setting():
         setting = Setting(
         id = 1,
         moisMin = 20,
-        moisMax = 50,
+        moisMax = 80,
         tempMin  = 5,
         tempMax = 35,
         lightMax = 1000,
         lightMin = 0,
-        wateringTime = 60,
-        pictureFrequency = 60)
+        wateringTime = 500,
+        pictureFrequency = 15)
         db.session.add(setting)
         db.session.commit()
     else:

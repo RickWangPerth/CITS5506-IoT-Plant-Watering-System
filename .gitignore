@@ -137,3 +137,4 @@ dmypy.json
 migrations/
 
 plant_photos/
+.idea

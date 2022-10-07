@@ -4,6 +4,7 @@ from app import app, db
 from app.models import Setting, History
 from sys import platform
 import time
+import json
 if platform == "linux":
     from app import collect_sensors, scheduler, pump
 
@@ -148,3 +149,14 @@ def water_plant_fixed():
     time.sleep(3)
     pump.off()
     return {'success': True}, 200
+
+@app.route('/get_data')
+def get_data():
+    entry = History.query.order_by(History.timestamp.desc()).first()
+    if entry is None:
+        x = {'moisture': None, 'temperature': None, \
+        'light': None, 'waterLevel': 1, 'updateTime': None}
+        return json.dumps(x)
+    x = {'moisture': entry.moisture, 'temperature': entry.temperature, \
+    'light': entry.light, 'waterLevel': entry.waterLevel, 'updateTime': entry.timestamp.timestamp()}
+    return json.dumps(x)

@@ -16,16 +16,20 @@ migrate = Migrate(app, db)
 
 if platform == "linux":
     from app.sensors.collect_sensors import CollectSensors
+    from app.automatic_watering import AutomaticWatering
     import atexit
     from app.pump import Pump
 
     collect_sensors = CollectSensors(db)
 
+    pump = Pump(15)
+    auto_watering = AutomaticWatering(pump)
+
     scheduler = BackgroundScheduler()
     scheduler.add_job(func=collect_sensors.update_database, trigger="interval", seconds=3)
+    watering_check_scheduler = scheduler.add_job(func=auto_watering.check_and_water, trigger="interval", seconds=20)
     scheduler.start()
 
-    pump = Pump(15)
 
     def shutdown():
         print("Stopping...")

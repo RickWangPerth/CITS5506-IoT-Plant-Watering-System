@@ -45,9 +45,9 @@ class History(db.Model):
     temperature = db.Column(db.REAL,index=True)
     light = db.Column(db.REAL,index=True)
     waterLevel = db.Column(db.Boolean, index=True)
-    moistureAlert = db.Column(db.Integer, index=True, default=0)
-    temperatureAlert = db.Column(db.Integer, index=True, default=0)
-    lightAlert = db.Column(db.Integer, index=True, default=0)
+    moistureAlert = db.Column(db.REAL, index=True, default=0.0)
+    temperatureAlert = db.Column(db.REAL, index=True, default=0.0)
+    lightAlert = db.Column(db.REAL, index=True, default=0.0)
     waterLevelAlert = db.Column(db.Integer, index=True, default=0)
 
     def __init__(self, timestamp, moisture, temperature, light, waterLevel, moistureAlert, temperatureAlert, lightAlert, waterLevelAlert):

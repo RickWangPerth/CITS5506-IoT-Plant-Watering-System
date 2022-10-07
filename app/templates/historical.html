@@ -5,6 +5,9 @@
   var moisData = {{ data.moisData }}
   var tempData = {{ data.tempData }}
   var lightData = {{ data.lightData }}
+  var moisAlert = {{ data.moisAlert}}
+  var tempAlert = {{ data.tempAlert }}
+  var lightAlert = {{ data.lightAlert }}
 </script>
 
 <script src="https://d3js.org/d3.v7.min.js"></script>
@@ -35,11 +38,11 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <td>2022 Sep 2 18:20:10</td>
-                        <td>Moisture lower than 20%</td>
+                        <td class="TimeStamp0"></td>
+                        <td class="Alert0">Moisture lower than 20%</td>
                       </tr>
                       <tr>
-                        <td>2022 Sep 2 18:20:10</td>
+                        <td >2022 Sep 2 18:20:10</td>
                         <td>Temperature is over 35 °C</td>
                       </tr>
                       <tr>

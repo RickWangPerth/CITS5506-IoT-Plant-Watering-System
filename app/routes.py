@@ -68,16 +68,30 @@ def historical():
     moisData = []
     tempData = []
     lightData = []
+    ## Modified in 07/10/2022 BY LEON
+    timeStamp = []
+    moisAlert = []
+    tempAlert = []
+    lightAlert = []
+
     entries = History.query.order_by(History.timestamp).all()
     if entries is None:
         return render_template("historical.html", data={'moisData': moisData, 'tempData': tempData, \
-        'lightData': lightData}, title="Historical Data")
+        'lightData': lightData, 'timeStamp': timeStamp, 'moisAlert': moisAlert, 'tempAlert': tempAlert, \
+        'lightAlert': lightAlert}, title="Historical Data")
     for entry in entries:
         moisData.append(entry.moisture)
         tempData.append(entry.temperature)
         lightData.append(entry.light)
+        ## Modified in 07/10/2022 BY LEON
+        timeStamp.append(entry.timeStamp)
+        moisAlert.append(entry.moistureAlert)
+        tempAlert.append(entry.temperatureAlert)
+        lightAlert.append(entry.lightAlert)
+
     return render_template("historical.html", data={'moisData': moisData, 'tempData': tempData, \
-    'lightData': lightData}, title="Historical Data")
+    'lightData': lightData, 'timeStamp': timeStamp, 'moisAlert': moisAlert, 'tempAlert': tempAlert, \
+        'lightAlert': lightAlert}, title="Historical Data")
 
 @app.route('/advance', methods=['GET', 'POST'])
 def advance():

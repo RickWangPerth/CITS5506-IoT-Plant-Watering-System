@@ -9,6 +9,7 @@
     var lightMax = {{ data.lightMax }}
     var wateringTime = {{ data.wateringTime }}
     var pictureFrequency = {{ data.pictureFrequency }}
+
 </script>
 <script src="{{ url_for('static', filename='js/advance.js') }}"></script>
 {% endblock %} 
@@ -26,7 +27,7 @@
             </form>
             <div class="pt-2"></div>
             <form class="form-floating">
-                <input type="number" class="form-control" id="moisMax" step="5" min="30" max="80">
+                <input type="number" class="form-control" id="moisMax" step="5" min="50" max="95">
                 <label for="moisMax">Max</label>
             </form>
         </div>

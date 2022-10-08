@@ -64,25 +64,25 @@ class CollectSensors:
         self.camera.save_picture()
 
         if self.moisture < self.moisMin:
-            self.moisAlert = 1
+            self.moisAlert = self.moisture - self.moisMin
         elif self.moisture >= self.moisMin and self.moisture<=self.moisMax:
-            self.moisAlert = 0
+            self.moisAlert = 0.0
         else:
-            self.moisAlert = 2
+            self.moisAlert = self.moisture - self.moisMax
         
         if self.temperature < self.tempMin:
-            self.tempAlert = 1
+            self.tempAlert = self.temperature - self.tempMin
         elif self.temperature >= self.tempMin and self.temperature <= self.tempMax:
-            self.tempAlert = 0
+            self.tempAlert = 0.0
         else:
-            self.tempAlert = 2
+            self.tempAlert = self.temperature - self.tempMax
 
         if self.light_value < self.lightMin:
-            self.lightAlert = 1
+            self.lightAlert = self.light_value - self.lightMin
         elif self.light_value >= self.lightMin and self.light_value <= self.lightMax:
-            self.lightAlert = 0
+            self.lightAlert = 0.0
         else:
-            self.lightAlert = 2
+            self.lightAlert = self.light_value - self.lightMax
     
     def get_current(self):
         self.update_sensors()

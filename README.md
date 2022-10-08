@@ -1,5 +1,5 @@
-# The University of Western Australia 
-### CITS5506 The Internet of Things SEM-2 Group Project
+# CITS5506 The Internet of Things SEM-2 Group Project
+### The University of Western Australia 
 ### Group 8: Smart Plant Watering and Monitoring System 
 #### Jai Castle (22465418) & Blake Fordham (22708346) & Leon Li (23031208) & Wenjie Song (22470722) & Xinlyu Wang (22200099)
 

@@ -18,6 +18,11 @@ $(window).on('load', () => {
     const wateringButton = document.getElementById('watering-btn')
 
     function render_page() {
+        //initial alarm
+        wateralarm.style.display = "none"
+        wateralarm.innerHTML = ""
+        alarm.style.display = "none"
+        alarm.innerHTML = ""
         // Update time
         var d = new Date(0);
         d.setUTCSeconds(lastUpdated);
@@ -27,7 +32,7 @@ $(window).on('load', () => {
         const highMois = moisMax
         const lowMois = moisMin
         const mois = moisture
-        //  const mois = 30
+        //const mois = -60
         if (mois !== null) { // moisture will be null if there are no moisture values to check
             document.getElementById('mois-value').innerHTML = Math.round(mois) + "%";
         } else {

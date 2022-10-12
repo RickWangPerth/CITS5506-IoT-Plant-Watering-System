@@ -10,11 +10,10 @@ $(window).on('load', () => {
         width = 700 - 2 * margin;
     if (window.outerWidth < 400)
         width = window.outerWidth - 2*margin;
-    console.log(window.outerWidth)
     var height = 180 - 2 * margin;
     var barPadding = 3;
 
-
+    /* Moisture graph */
     if (moisData.length > 0) { // If we've received sensor data
         var yScale = d3.scaleLinear()
             .domain([0,d3.max(moisData)])
@@ -63,6 +62,8 @@ $(window).on('load', () => {
     } else { // If we haven't received sensor data
         document.getElementById("moisData").innerHTML = "No data"; // Placeholder 'no data' indicator
     }
+
+    /* Temperature graph */
     var height = 180 - 2 * margin;
     if (tempData.length > 0) {
         var yScale = d3.scaleLinear()
@@ -113,6 +114,7 @@ $(window).on('load', () => {
         document.getElementById("tempData").innerHTML = "No data";
     }
 
+    /* Ambient light graph */
     var height = 180 - 2 * margin;
     if (lightData.length > 0) {
         var lightsvg = d3.select("#lightData")
@@ -163,6 +165,7 @@ $(window).on('load', () => {
         document.getElementById("lightData").innerHTML = "No data";
     }
 
+    /* Alerts */
 
     var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
     d.setUTCSeconds(timeStamp[timeStamp.length - 1]);
@@ -176,14 +179,12 @@ $(window).on('load', () => {
     
     // display the historical status
     function displayChange(n) {
-        console.log(n)
         if (n < 0)
             return n+"(↓)";
         if (n == 0) 
             return "Normal";
         if (n > 0)
             return n+"(↑)";
-        //return (n == 0) ? ("Normal") : n;
     }
 
     document.getElementById("moisAlert0").innerHTML = displayChange(moisAlert[moisAlert.length-1]);
@@ -197,8 +198,4 @@ $(window).on('load', () => {
     document.getElementById("lightAlert0").innerHTML = displayChange(lightAlert[lightAlert.length-1]);
     document.getElementById("lightAlert1").innerHTML = displayChange(lightAlert[lightAlert.length-2]);
     document.getElementById("lightAlert2").innerHTML = displayChange(lightAlert[lightAlert.length-3]);
-
-    //document.getElementById("lightAlert1").innerHTML = displayChange(-19);
-    //document.getElementById("lightAlert2").innerHTML = displayChange(0);
-
 })

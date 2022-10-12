@@ -205,7 +205,7 @@ $(window).on('load', () => {
         }
     }
 
-    render_page();
+    render_page(); // When the page is first loaded
 
     // When 'Take Photo' button is clicked
     photoButton.addEventListener('click', () => {
@@ -220,6 +220,7 @@ $(window).on('load', () => {
         });
     })
 
+    // When the 'Water your plant' button is clicked.
     wateringButton.addEventListener('click', () => {
         wateringButton.disabled = true;
         $.ajax({
@@ -247,7 +248,7 @@ $(window).on('load', () => {
                 sensLight = data.light;
                 waterLevelvalue = data.waterLevel;
                 lastUpdated = data.updateTime;
-                render_page();
+                render_page(); // Now update the UI to show the new data
             }
         })
     }, 3000);

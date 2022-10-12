@@ -18,6 +18,12 @@ $(window).on('load', () => {
     const wateringButton = document.getElementById('watering-btn')
 
     function render_page() {
+        //initial alarm
+        wateralarm.style.display = "none"
+        wateralarm.innerHTML = ""
+        alarm.style.display = "none"
+        alarm.innerHTML = ""
+        
         // Update time
         var d = new Date(0);
         d.setUTCSeconds(lastUpdated);

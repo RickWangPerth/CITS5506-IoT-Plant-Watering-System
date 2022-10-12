@@ -174,9 +174,16 @@ $(window).on('load', () => {
     d.setUTCSeconds(timeStamp[timeStamp.length - 3]);
     document.getElementById("TimeStamp2").innerHTML = d.toLocaleString()//timeStamp[2];
     
+    // display the historical status
     function displayChange(n) {
         console.log(n)
-        return (n == 0) ? ("Normal") : n;
+        if (n < 0)
+            return n+"(↓)";
+        if (n == 0) 
+            return "Normal";
+        if (n > 0)
+            return n+"(↑)";
+        //return (n == 0) ? ("Normal") : n;
     }
 
     document.getElementById("moisAlert0").innerHTML = displayChange(moisAlert[moisAlert.length-1]);

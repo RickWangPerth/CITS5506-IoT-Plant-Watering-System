@@ -109,6 +109,7 @@ $(window).on('load', () => {
         
         // When 'Take Photo' button is clicked
         photoButton.addEventListener('click', () => {
+            console.log("click");
             $.ajax({
                 url: "/take_picture",
                 type: "GET",

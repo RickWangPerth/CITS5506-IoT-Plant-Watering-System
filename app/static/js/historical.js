@@ -173,17 +173,25 @@ $(window).on('load', () => {
     d = new Date(0);
     d.setUTCSeconds(timeStamp[timeStamp.length - 3]);
     document.getElementById("TimeStamp2").innerHTML = d.toLocaleString()//timeStamp[2];
+    
+    function displayChange(n) {
+        console.log(n)
+        return (n == 0) ? ("Normal") : n;
+    }
 
-    document.getElementById("moisAlert0").innerHTML = moisAlert[moisAlert.length-1];
-    document.getElementById("moisAlert1").innerHTML = moisAlert[moisAlert.length-2];
-    document.getElementById("moisAlert2").innerHTML = moisAlert[moisAlert.length-3];
+    document.getElementById("moisAlert0").innerHTML = displayChange(moisAlert[moisAlert.length-1]);
+    document.getElementById("moisAlert1").innerHTML = displayChange(moisAlert[moisAlert.length-2]);
+    document.getElementById("moisAlert2").innerHTML = displayChange(moisAlert[moisAlert.length-3]);
 
-    document.getElementById("tempAlert0").innerHTML = tempAlert[tempAlert.length-1];
-    document.getElementById("tempAlert1").innerHTML = tempAlert[tempAlert.length-2];
-    document.getElementById("tempAlert2").innerHTML = tempAlert[tempAlert.length-3];
+    document.getElementById("tempAlert0").innerHTML = displayChange(tempAlert[tempAlert.length-1]);
+    document.getElementById("tempAlert1").innerHTML = displayChange(tempAlert[tempAlert.length-2]);
+    document.getElementById("tempAlert2").innerHTML = displayChange(tempAlert[tempAlert.length-3]);
 
-    document.getElementById("lightAlert0").innerHTML = lightAlert[lightAlert.length-1];
-    document.getElementById("lightAlert1").innerHTML = lightAlert[lightAlert.length-2];
-    document.getElementById("lightAlert2").innerHTML = lightAlert[lightAlert.length-3];
+    document.getElementById("lightAlert0").innerHTML = displayChange(lightAlert[lightAlert.length-1]);
+    document.getElementById("lightAlert1").innerHTML = displayChange(lightAlert[lightAlert.length-2]);
+    document.getElementById("lightAlert2").innerHTML = displayChange(lightAlert[lightAlert.length-3]);
+
+    //document.getElementById("lightAlert1").innerHTML = displayChange(-19);
+    //document.getElementById("lightAlert2").innerHTML = displayChange(0);
 
 })

@@ -4,7 +4,7 @@
 #### Jai Castle (22465418) & Blake Fordham (22708346) & Leon Li (23031208) & Wenjie Song (22470722) & Xinlyu Wang (22200099)
 
 ## How to launch the web application
-Clone this application to loacl direscotry <code> git clone https://github.com/RickWangPerth/CITS5506-IoT-Plant-Watering-System.git </code> <br>
+Clone this application to local directory <code> git clone https://github.com/RickWangPerth/CITS5506-IoT-Plant-Watering-System.git </code> <br>
  <br>
 Set up python virtual environment <code> python3 -m venv venv </code> <br>
  <br>

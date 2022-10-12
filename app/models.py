@@ -7,7 +7,7 @@ class Setting(db.Model):
     __tablename__ = "setting"
     id = db.Column(db.Integer, primary_key=True, default=1)
     moisMin = db.Column(db.Integer,index=True, default=20)
-    moisMax = db.Column(db.Integer,index=True, default=70)
+    moisMax = db.Column(db.Integer,index=True, default=95)
     tempMin = db.Column(db.Integer,index=True, default=5)
     tempMax = db.Column(db.Integer,index=True, default=35)
     lightMax = db.Column(db.Integer,index=True, default=2)
@@ -21,6 +21,7 @@ class Setting(db.Model):
             self.moisMin,
             self.moisMax,
             self.tempMin,
+            self.tempMax,
             self.lightMax,
             self.lightMin,
             self.wateringTime,

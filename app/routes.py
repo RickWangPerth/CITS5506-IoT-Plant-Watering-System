@@ -138,7 +138,7 @@ def store_Setting():
         setting.moisMin = moisMin
         setting.moisMax = moisMax
         setting.tempMin = tempMin
-        setting.tempmax = tempMax
+        setting.tempMax = tempMax
         setting.lightMin = lightMin
         setting.lightMax = lightMax
         setting.wateringTime = wateringTime

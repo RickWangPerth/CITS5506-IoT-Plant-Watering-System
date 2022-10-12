@@ -173,7 +173,17 @@ $(window).on('load', () => {
     d = new Date(0);
     d.setUTCSeconds(timeStamp[timeStamp.length - 3]);
     document.getElementById("TimeStamp2").innerHTML = d.toLocaleString()//timeStamp[2];
-    document.getElementById("Alarm0").innerHTML = moisAlert[0]+tempAlert[0]+lightAlert[0];
-    document.getElementById("Alarm1").innerHTML = moisAlert[1]+tempAlert[1]+lightAlert[1];
-    document.getElementById("Alarm2").innerHTML = moisAlert[2]+tempAlert[2]+lightAlert[2];
+
+    document.getElementById("moisAlert0").innerHTML = moisAlert[moisAlert.length-1];
+    document.getElementById("moisAlert1").innerHTML = moisAlert[moisAlert.length-2];
+    document.getElementById("moisAlert2").innerHTML = moisAlert[moisAlert.length-3];
+
+    document.getElementById("tempAlert0").innerHTML = tempAlert[tempAlert.length-1];
+    document.getElementById("tempAlert1").innerHTML = tempAlert[tempAlert.length-2];
+    document.getElementById("tempAlert2").innerHTML = tempAlert[tempAlert.length-3];
+
+    document.getElementById("lightAlert0").innerHTML = lightAlert[lightAlert.length-1];
+    document.getElementById("lightAlert1").innerHTML = lightAlert[lightAlert.length-2];
+    document.getElementById("lightAlert2").innerHTML = lightAlert[lightAlert.length-3];
+
 })

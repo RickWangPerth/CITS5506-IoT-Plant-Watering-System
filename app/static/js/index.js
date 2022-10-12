@@ -17,13 +17,16 @@ $(window).on('load', () => {
     // Watering
     const wateringButton = document.getElementById('watering-btn')
 
+    // Photo
+    const photoButton = document.getElementById('photo-btn')
+
     function render_page() {
         //initial alarm
         wateralarm.style.display = "none"
         wateralarm.innerHTML = ""
         alarm.style.display = "none"
         alarm.innerHTML = ""
-        
+
         // Update time
         var d = new Date(0);
         d.setUTCSeconds(lastUpdated);
@@ -39,10 +42,10 @@ $(window).on('load', () => {
         } else {
             document.getElementById('mois-value').innerHTML = "N/A";
         }
-    
+
         const tooMois = mois>highMois
         const goodMois = mois<highMois & mois>lowMois
-        const lessMois = mois<lowMois 
+        const lessMois = mois<lowMois
 
         //Temperature
         const highTemp = tempMax
@@ -59,7 +62,7 @@ $(window).on('load', () => {
         const tooHot = temp>highTemp
         const goodTemp = temp<highTemp & temp>lowTemp
         const tooCold = temp<lowTemp
-    
+
         //Light
         const highLight = lightMax
         const lowLight = lightMin
@@ -74,8 +77,6 @@ $(window).on('load', () => {
         const tooBright = light>highLight
         const goodLight = light<highLight & temp>lowLight
         const tooDark = light<lowLight
-
-        
 
         // Water level
         const full = "../static/images/waterlevel/full.png"
@@ -95,7 +96,6 @@ $(window).on('load', () => {
 
         //Photo
         const photo = document.getElementById('photo')
-        const photoButton = document.getElementById('photo-btn')
         $.ajax({
             url: "/latest_picture/",
             type: "GET",
@@ -106,20 +106,6 @@ $(window).on('load', () => {
             photo.src = data.image_path
             },
         });
-        
-        // When 'Take Photo' button is clicked
-        photoButton.addEventListener('click', () => {
-            console.log("click");
-            $.ajax({
-                url: "/take_picture",
-                type: "GET",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (data) {
-                    photo.src = data.image_path;
-                },
-            });
-        })
 
         // Emoji & Alarm feature
         if(tooCold){
@@ -155,7 +141,6 @@ $(window).on('load', () => {
         else{
             emoji.src=happy
         }
-    
 
         // Style sheet & type
         const styleSheet = document.styleSheets[1];
@@ -215,13 +200,26 @@ $(window).on('load', () => {
             '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
             '</div>'
             ].join('')
-        
+
             alertPlaceholder.append(info)
         }
     }
 
     render_page();
-    
+
+    // When 'Take Photo' button is clicked
+    photoButton.addEventListener('click', () => {
+        $.ajax({
+            url: "/take_picture",
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                photo.src = data.image_path;
+            },
+        });
+    })
+
     wateringButton.addEventListener('click', () => {
         wateringButton.disabled = true;
         $.ajax({

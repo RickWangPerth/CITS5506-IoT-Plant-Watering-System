@@ -81,7 +81,7 @@ $(window).on('load', () => {
       }
       if (dataType == 'moisMax'){
         if(data > 100){
-          alert('Max number of moisture should be less than 90', 'danger')
+          alert('Max number of moisture shouldnt be less than 90', 'danger')
           document.getElementById("moisMax").value = moisMaxDefault
           return 0
         }
@@ -93,7 +93,7 @@ $(window).on('load', () => {
         }
       }else if(dataType == 'tempMax'){
         if(data > 50){
-          alert('Max number of temperature should be less than 50', 'danger')
+          alert('Max number of temperature shouldnt be less than 50', 'danger')
           document.getElementById("tempMax").value = tempMaxDefault
           return 0
         }
@@ -105,7 +105,7 @@ $(window).on('load', () => {
         }
       }else if(dataType == 'lightMax'){
         if(data > 10000){
-          alert('Max number of moisture should be less than 20', 'danger')
+          alert('Max number of moisture shouldnt be less than 20', 'danger')
           document.getElementById("lightMax").value = lightMaxDefault
           return 0
         }

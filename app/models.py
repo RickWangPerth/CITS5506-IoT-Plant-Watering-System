@@ -4,6 +4,10 @@ from sqlalchemy.sql import func
 import datetime
 
 class Setting(db.Model):
+    """
+    The Setting table in the database. Stores the minimum and maximum values for moisture, temperature and light.
+    Also stores the photo frequency and for how long to pump water onto the plant when it is required.
+    """
     __tablename__ = "setting"
     id = db.Column(db.Integer, primary_key=True, default=1)
     moisMin = db.Column(db.Integer,index=True, default=20)
@@ -16,6 +20,7 @@ class Setting(db.Model):
     pictureFrequency = db.Column(db.Integer,index=True, default=2)
 
     def __repr__(self):
+        # Converts a Setting object to a string
         return '[id;{},moisMin:{}, moisMax:{}, tempMin:{}, tempMax:{}, lightMax:{}, lightMin:{}, wateringTime:{}, pictureFrequency: {}]'.format(
             self.id,
             self.moisMin,
@@ -28,6 +33,7 @@ class Setting(db.Model):
             self.pictureFrequency)
 
     def to_dict(self):
+        # Converts a Setting object to a dictionary
         return {
             'id': self.id,
             'moisMin': self.moisMin,
@@ -40,7 +46,15 @@ class Setting(db.Model):
             #'alertMessage':self.alertMessage
             'pictureFrequency':self.pictureFrequency
         }
+
+
 class History(db.Model):
+    """
+    The History table in the database.
+    Stores a row for each time the sensor data is recorded.
+    Values are the time, temperature, moisture, ambient light, water level and corresponding alerts at the time.
+    """
+
     timestamp = db.Column(db.DateTime(timezone=True), server_default=func.now(), primary_key=True)
     moisture = db.Column(db.REAL,index=True)
     temperature = db.Column(db.REAL,index=True)
@@ -63,11 +77,16 @@ class History(db.Model):
         self.waterLevelAlert = waterLevelAlert
     
     @classmethod
-    def delete_expired(cls):
-        expiration = datetime.timedelta(seconds=30)
+    def delete_expired(cls, minutes=1):
+        """
+        Deletes expired historical data that is too old.
+        @param minutes: How long to keep historical data for.
+        """
+        expiration = datetime.timedelta(minutes=minutes)
         limit = datetime.datetime.now() - expiration
         cls.query.filter(cls.timestamp <= limit).delete()
         db.session.commit()
 
     def __str__(self):
+        # Converts a History object to a string
         return str((self.timestamp, self.moisture, self.temperature, self.light, self.waterLevel, self.alertMessage))

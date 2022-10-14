@@ -49,6 +49,13 @@ h5 {
         width: 50vw;
     }
 }
+    
+@media (max-width: 900px){
+    .table-wrapper {
+        font-size: smaller !important;
+        overflow-x: scroll;
+    }
+}
 
 .metric-heading {
     font-weight: 600;

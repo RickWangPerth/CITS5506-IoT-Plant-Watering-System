@@ -9,6 +9,7 @@ if platform == "linux":
     from datetime import datetime
     from app.sensors.VEML6030.PiicoDev_VEML6030 import PiicoDev_VEML6030
 
+
 class CollectSensors:
     moisture = None
     temperature = None
@@ -27,8 +28,17 @@ class CollectSensors:
     lightAlert = None
     waterLevelAlert = 0
 
-
     def __init__(self, db):
+        """
+        Manages and collects data from the sensors:
+        - Temperature sensor
+        - Moisture sensor
+        - Light sensor
+        - Water level sensor
+        - Camera
+
+        @param db: The database object to use to store data
+        """
         self.db = db
 
         # Analog I/O
@@ -56,6 +66,11 @@ class CollectSensors:
         self.update_sensors()
     
     def update_sensors(self):
+        """
+        Updates the sensor data and calculates alerts.
+        Also takes a picture.
+        The picture is saved and the updated sensor data is stored in the object.
+        """
         self.get_setting()
         self.moisture = self.moisture_sensor.get_moisture()
         self.temperature = self.temperature_sensor.get_temp()
@@ -85,10 +100,18 @@ class CollectSensors:
             self.lightAlert = self.light_value - self.lightMax
     
     def get_current(self):
+        """
+        Gets the current sensor data
+        @return: moisture, temperature, water_present, light_value
+        """
         self.update_sensors()
         return self.moisture, self.temperature, self.water_present, self.light_value
     
     def get_setting(self):
+        """
+        Retrieves the settings from the database for minimum and maximum moisture, temperature and light.
+        If they don't exist, default values are used.
+        """
         try:
             setting = Setting.query.first()
         except:
@@ -110,6 +133,10 @@ class CollectSensors:
         return True
     
     def update_database(self):
+        """
+        Gets the latest sensor data and writes a new row in the database.
+        Also deletes entries in the database that are now too old.
+        """
         self.update_sensors()
         history = History(datetime.now(), 
                             int(self.moisture), 

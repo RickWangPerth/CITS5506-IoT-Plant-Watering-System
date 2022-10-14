@@ -87,7 +87,7 @@ $(window).on('load', () => {
         }
       }else if(dataType == 'moisMin'){
         if(data < 10){
-          alert('Min number of moisture should be graeter than 10', 'danger')
+          alert('Min number of moisture should be greater than 10', 'danger')
           document.getElementById("moisMin").value = moisMinDefault
           return 0
         }
@@ -99,7 +99,7 @@ $(window).on('load', () => {
         }
       }else if(dataType == 'tempMin'){
         if(data < -10){
-          alert('Min number of temperature  should be graeter than -10', 'danger')
+          alert('Min number of temperature  should be greater than -10', 'danger')
           document.getElementById("tempMin").value = tempMinDefault
           return 0
         }
@@ -111,7 +111,7 @@ $(window).on('load', () => {
         }
       }else if(dataType == 'lightMin'){
         if(data < 0){
-          alert('Min number of moisture should be graeter than 0', 'danger')
+          alert('Min number of moisture should be greater than 0', 'danger')
           document.getElementById("lightMin").value = lightMinDefault
           return 0
         }
